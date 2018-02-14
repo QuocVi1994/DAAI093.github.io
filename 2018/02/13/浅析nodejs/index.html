@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="学习Node.js时候的建议  前端和后端的知识体系不同！不要使用前端的思维方式去学习后端开发！  学习Node.js阶段，把自己当作后端开发人员！  课堂上对重点的知识做笔记，利用一切时间练习课堂代码；晚上抽半个小时梳理总结今天所学知识点；整理今天的笔记！  每天吃饭睡觉走大街上，都要在脑海中闪现今天学习的知识点【×××知识点是什么，怎么用】">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析node">
+<meta property="og:url" content="http://mrgo.top/2018/02/13/浅析nodejs/index.html">
+<meta property="og:site_name" content="MrGo-Blog">
+<meta property="og:description" content="学习Node.js时候的建议  前端和后端的知识体系不同！不要使用前端的思维方式去学习后端开发！  学习Node.js阶段，把自己当作后端开发人员！  课堂上对重点的知识做笔记，利用一切时间练习课堂代码；晚上抽半个小时梳理总结今天所学知识点；整理今天的笔记！  每天吃饭睡觉走大街上，都要在脑海中闪现今天学习的知识点【×××知识点是什么，怎么用】">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-14T07:45:50.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅析node">
+<meta name="twitter:description" content="学习Node.js时候的建议  前端和后端的知识体系不同！不要使用前端的思维方式去学习后端开发！  学习Node.js阶段，把自己当作后端开发人员！  课堂上对重点的知识做笔记，利用一切时间练习课堂代码；晚上抽半个小时梳理总结今天所学知识点；整理今天的笔记！  每天吃饭睡觉走大街上，都要在脑海中闪现今天学习的知识点【×××知识点是什么，怎么用】">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mrgo.top/2018/02/13/浅析nodejs/"/>
+
+
+
+
+
+  <title>浅析node | MrGo-Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband">
+      <a href="https://github.com/DAAI093">
+        <img style="position: absolute; top: 0; right: 0; border: 0;"
+        src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67"
+         alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MrGo-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Web\Linux</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mrgo.top/2018/02/13/浅析nodejs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MrGo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MrGo-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浅析node</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T10:54:00+08:00">
+                2018-02-13
+              </time>
+            
+
+            
+              <span id="busuanzi_container_page_pv">&nbsp;&nbsp;|&nbsp;&nbsp;阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>学习Node.js时候的建议</p>
+<ol>
+<li><p>前端和后端的知识体系不同！不要使用前端的思维方式去学习后端开发！</p>
+</li>
+<li><p>学习Node.js阶段，把自己当作后端开发人员！</p>
+</li>
+<li><p>课堂上对重点的知识做笔记，利用一切时间练习课堂代码；晚上抽半个小时梳理总结今天所学知识点；整理今天的笔记！</p>
+</li>
+<li><p>每天吃饭睡觉走大街上，都要在脑海中闪现今天学习的知识点【×××知识点是什么，怎么用】</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">以上显示在摘要中</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">以下是余下全文</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>什么是前端和后端</p>
+<ol>
+<li>前端主要工作：写页面（HTML）、美化页面（CSS）、调用后台提供的API接口去请求或提交数据（JS）；Ajax （XHR、Jquery  .ajax  .get  $.post），Jquery更多的是进行DOM方面的操作！H5C3，高级、Angular（单页面应用程序）</li>
+</ol>
+<ul>
+<li>前端主要在浏览器端进行开发；前端主要和页面打交道，用户看到的基本上就是我们前端写出来的（前端就是颜值）</li>
+</ul>
+<ol>
+<li>后端主要工作：主要进行业务逻辑的操作、比如数据的增删改查、操作数据库、对外暴露API接口（后台是骨骼、灵魂）</li>
+<li>前后端协作流程：前端写页面，前端调用后台的接口；后台接受前端发过来的请求，然后进行相关的业务处理，把处理的结果返回给前端（提供API接口）</li>
+</ol>
+<p>Javascript 的起源</p>
+<ol>
+<li>诞生：JS的诞生和一个公司有关，有一个网景公司；当时网速只有20~30KB（电话线），当时，就是为了进行客户端验证，为了减少不必要的网络请求，提高网络效率，网景公司决定研究一门语言，来解决这个问题；JS作者在10之内，就把这门语言写出来了，叫做LiveScript，为了搭上Java这般顺风车，就把LiveScript改名为Javascript；</li>
+<li>浏览器中的一战：微软发现浏览器市场很火，然后就自己开发了一款浏览器【IE】；为了推广自己的IE浏览器，把IE捆绑到了Windows操作系统中；JScript</li>
+</ol>
+<ul>
+<li>一战胜利的果实：ECMAScript标准的确立；就是一个语言规范；只规定了如何进行分支判断、如何定义变量、如何定义方法…..</li>
+</ul>
+<ol>
+<li>短暂的和平期：IE6【微软发现自己已经天下无敌了，然后就把IE6的开发团队给解散了！】在和平期间，JS这门语言主要做什么：表单验证、简单的特效、狗皮膏药（当时被称为脚本语言）</li>
+<li>二战：【主角：谷歌、IE、火（浴火重生）狐】谷歌在2008年，借助于AJax，开始火起来了！一方面提升渲染引擎的效率、另一方面，提升JS解析引擎的效率，最终，二战以谷歌的胜利结束；谷歌有了一款世界上效率最快的JS解析引擎，叫做chrome V8引擎；</li>
+</ol>
+<p>Node.js 的起源</p>
+<p>nodejs的历史由来</p>
+<ul>
+<li>作者，之前主要是做高性能服务器维护的；高性能的服务器有哪些必要的条件；必须要是异步非阻塞的、基于事件驱动的；</li>
+<li>作者在分析了上面两条基本条件之后，就开始研发高性能服务器！</li>
+<li>C,C++,Java,C#,Javascript</li>
+<li>对于程序员来说，如果同时提供了同步和异步两种编程方式，程序员肯定会选择同步；</li>
+<li>作者选择Javascript最主要的原因，就是这门语言是单线程的</li>
+<li>多线程：程序员能主动开启子线程的语言，就叫做多线程的语言；Thread td = new Thread();</li>
+<li>作者最终，选择的语言是Javascript、解析引擎是V8；</li>
+<li>刚开始，作者写出来的这个东西叫做web.js;后来，随着项目扩大和功能的完善，作者发现这款产品，不仅能做高性能的服务器，还能做许多事情，比如可以用这个东西去做前端包管理；于是就改名叫做Node.js;</li>
+<li>像前端需要好用的工具，都是使用node.js开发出来的！</li>
+</ul>
+<p>ECMAScript、浏览器中的Javascript、Node中的Javascript</p>
+<ul>
+<li>ECMAScript：语言规范；不能使用ECMAScript进行实际的编程，因为它只是一个语言标准而已；</li>
+<li><p>浏览器中的Javascript：是ECMAScript这个规范的具体实现；我们可以使用浏览器中的JS进行实际的编程！</p>
+</li>
+<li><p>浏览器中的Javascript组成部分：DOM + BOM + ECMAScript；其中，DOM和BOM和规范无关，是浏览器根据自己的需要，后期扩展的；</p>
+</li>
+<li><p>Node中的Javascript：是ECMAScript这个规范的具体实现；也能进行实际的编程！</p>
+</li>
+<li><p>Node中的Javascript组成部分：ECMAScript + 核心API + 其他第三方API，由于Node不需要操作浏览器对象和文档对象，所以把BOM和DOM给剔除了！核心API中，提供了 操作 文件的API 和 操作网络的 API等。。。。</p>
+</li>
+</ul>
+<p>什么是Node.js</p>
+<ul>
+<li><p>Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。</p>
+</li>
+<li><p>我们使用JS写的Node代码，说白了，只是单纯的字符串而已；</p>
+</li>
+<li><p>如果想要执行这些写好的代码，必须要有一个解析执行环境，这个环境就是chrome 的 V8 引擎；</p>
+</li>
+<li><p>Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。</p>
+</li>
+<li><p>事件驱动：当触发某个事件的时候，执行事件中指定的代码！</p>
+</li>
+<li><p>非阻塞式 I/O 的模型：采用非阻塞的操作，能够提高处理的效率！</p>
+</li>
+<li><p>Node.js 的包管理器 npm，是全球最大的开源库生态系统。</p>
+</li>
+<li><p>先使用npm init -y初始化一下包管理文件package.json，将来所有安装的包，都会记录到这个文件中</p>
+</li>
+<li>使用npm install 包名 –save/–save-dev去安装包；其中，install可以简写成i;</li>
+<li>–save表示把包安装到部署依赖中（在开发和部署上线都需要使用的包）； –save-dev表示安装到开发依赖（只在项目开发阶段需要用到的包）；</li>
+<li>–save可以简写成-S；–save-dev可以简写成-D;</li>
+<li>npm uninstall 包名 –save/–save-dev或者npm remove 包名 –save/–save-dev</li>
+<li><p>npm i webpack -g,其中，-g表示全局安装某些包，通过-g安装的包都在C:\Users\用户名\AppData\Roaming\npm下面</p>
+</li>
+<li><p>NPM 和 （Github、码云） 和 Git之间的关系</p>
+</li>
+<li><p>NPM是包管理平台（里面托管了各种各样的包）</p>
+</li>
+<li>Github、码云 代码托管平台（托管了各种各样的代码仓库）</li>
+<li>Git是用来对代码进行分支版本管理</li>
+</ul>
+<p>补充：yarn</p>
+<ul>
+<li>yarn和npm的作用完全一样，都是用来管理项目中的第三方依赖包的！</li>
+<li>yarn是Facebook公司推出来的一套包管理工具！【后期咱们学习React，尤其是ReactNative的时候，默认就是用Yarn去装包的】</li>
+<li>yarn会缓存曾经安装过的包；但是npm也会缓存，但是效果不如yarn明显；</li>
+<li>yarn与npm的命令行小结</li>
+</ul>
+<p>补充：如何设置npm和yarn的安装镜像：</p>
+<p>什么是NPM淘宝镜像呢：由于每次安装包需要走国外的网络，速度很慢，所以，淘宝帮我们在国内创建了一个NPM包托管网站，能够提升使用NPM装包时候的速度！</p>
+<ol>
+<li><p>配置npm的国内淘宝镜像：</p>
+<p> npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a> –global<br> npm config set disturl <a href="https://npm.taobao.org/dist" target="_blank" rel="noopener">https://npm.taobao.org/dist</a> –global</p>
+</li>
+<li><p>配置yarn的国内淘宝镜像：</p>
+<p> yarn config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a> –global<br> yarn config set disturl <a href="https://npm.taobao.org/dist" target="_blank" rel="noopener">https://npm.taobao.org/dist</a> –global</p>
+</li>
+</ol>
+<p>总结：Node.js 就是一个Javascript的服务端运行环境（依赖于Chrome 的V8引擎），为Javascript提供了服务器端编程的能力！</p>
+<p>Node.js 可以做哪些事情</p>
+<ul>
+<li>【★】Node可以作为前端的一个工具去使用，通过NPM安装好用的工具；Node可以开发一些前端的工具【i5ting_toc】</li>
+<li>【★】Node能做服务器</li>
+<li>【★】Node还可以操作数据库并对外提供数据接口</li>
+<li>Node能做即时聊天</li>
+</ul>
+<p>【★★】为什么要学习Node.js</p>
+<ul>
+<li><p>从企业角度分析：</p>
+</li>
+<li><p>企业对一专多能人才的需求：怎么才能最大限度的压榨员工；省钱</p>
+</li>
+<li>多高性能服务器的需求：怎么才能最大限度的压榨服务器；</li>
+<li><p>Node适合做快速的网络请求，但是不适合做大数据的业务逻辑的处理；</p>
+</li>
+<li><p>从自身角度分析：</p>
+</li>
+<li><p>挣钱；</p>
+</li>
+<li>对将来职业生涯有好处：学了Node之后，为我们构建了后端的知识体系，无论将来你会不会做后端的Node开发，但是，起码你已经构建了完整的前后端知识体系！</li>
+<li>后面学到的任何新技术：Vue.js，React,React-Native都是基于Node的！包括后面要学的一个构建工具webpack！</li>
+</ul>
+<p>在Node中执行相关的JS代码的两种方式</p>
+<ol>
+<li>直接在命令行中输入node，进入Node的REPL运行环境：</li>
+</ol>
+<ul>
+<li>R：Read：读取用户输入的字符串内容</li>
+<li>E：Evaluate：把用户输入的字符串，当作JS代码去解析执行</li>
+<li>P：Print：打印输出Evaluate解析的结果</li>
+<li>L：Loop：进入下一次循环</li>
+</ul>
+<ol>
+<li>将Node代码写入到一个js文件中，然后通过node 要执行的JS文件路径去运行Node代码</li>
+</ol>
+<p>环境变量</p>
+<p>为什么可以通过命令行形式，直接启动node或者notepad呢？？？</p>
+<p>注意：每当修改了环境变量之后，需要重新启动命令窗口！</p>
+<p>什么是环境变量</p>
+<p>Path环境变量的作用：能够让我们通过命令行的形式快速启动一个应用程序；</p>
+<p>用户变量和系统变量的区别、</p>
+<p>用户变量：用户变量是属于每一个用户的，用户之间的用户变量是私有的，不共享的；</p>
+<p>系统变量：系统变量是共享的，只能用户能够登录这台电脑，那么就能访问系统变量中的任何东西！【将来咋在配置环境变量的时候，推荐大家配置到系统变量中！】</p>
+<p>配置环境变量的两种方式</p>
+<ol>
+<li>第一种方式：直接把路径添加到path环境变量中；</li>
+<li>第二种方式：先在环境变量中创建一个新变量，名字类似于：ZOOM_HOME这样，值是我们程序的根目录；然后，再把这个变量名，引用到 Path环境变量中，类似于：%ZOOM_HOME%</li>
+</ol>
+<p>Path变量的查找规则</p>
+<ol>
+<li>先从当前的目录中查找有没有这个应用程序，如果有，则直接运行，如果没有，则去系统环境变量中，path环境变量下挨个查找对应的文件夹，如果在对应文件夹中能找到，则直接运行，如果找不到，最终报错！</li>
+</ol>
+<p>【★★】使用fs模块来操作文件</p>
+<ol>
+<li>fs.readFile</li>
+<li>fs.writeFile</li>
+<li>fs.appendFile</li>
+</ol>
+<p>【★★★】fs模块中路径问题</p>
+<p>箭头函数</p>
+<p>Node中的使用http模块创建最基本的web服务器</p>
+<p>之前有没有接触过Web服务器？？？</p>
+<p>其实，PHPStudy中集成了一个叫做Apache的软件；这个软件就是一个服务器软件，能够托管一个网站；</p>
+<p>其实在Node中，并没有类似于Apache这样软件；我们可以通过简单的几行代码，写出一个Web服务器！</p>
+<p>【★★★】HTTP协议中的 请求 - 处理 - 响应 模型</p>
+<p>【★★】step by step 构建HTTP服务器</p>
+<p>升级1：根据不同的URL地址响应不同HTML消息</p>
+<p>升级2：根据不同URL地址 - 响应不同的页面</p>
+<p>升级3：在响应不同页面的同时响应静态资源（css、图片、js）</p>
+<p>【★★★】【难点】升级4：根据不同URL地址 - 响应不同文件的改造</p>
+<p>【★★】【难点】网页中资源请求路径问题</p>
+<p>相关文章</p>
+<ul>
+<li>JavaScript——历史与简介</li>
+<li>深入浅出Node.js（一）：什么是Node.js</li>
+<li>I/O事件概述</li>
+<li>理解Node.js事件驱动编程</li>
+<li>Node.js 中文网</li>
+<li>Node.js 英文官网</li>
+<li>Node.js 菜鸟教程</li>
+<li>CNode：Node.js专业中文社区</li>
+<li>深入浅出Node.js(朴灵)完整扫描版.pdf</li>
+<li>HTTP Keep-Alive是什么？如何工作？</li>
+<li>浏览器User-agent String里的历史故事</li>
+<li>art-template API</li>
+<li>yarn与npm的命令行小结</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+          
+
+  	         
+    </div>
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="MrGo wechat" style="width: 200px; max-width: 100%;"/>
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"> <i class="fa fa-tag"></i> node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/13/浅析nodejs-二/" rel="prev" title="浅析node">
+                浅析node <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="MrGo" />
+          <p class="site-author-name" itemprop="name">MrGo</p>
+           
+              <p class="site-description motion-element" itemprop="description">为了每一次遇见不变的纯真</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/DAAI093 || github" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:mrgowell1994@gmail.com || envelope" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100012734470392 || facebook" target="_blank" title="FB Page">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                    
+                      FB Page
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/2965761403/profile?topnav=1&wvr=6 || weibo" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog/" title="阮一峰的博客" target="_blank">阮一峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.liaoxuefeng.com/" title="廖雪峰博客" target="_blank">廖雪峰博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://f2ex.cn/" title="F2EX前端开发资源库" target="_blank">F2EX前端开发资源库</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MrGo
+
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1272906403'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1272906403' type='text/javascript'%3E%3C/script%3E"));</script>
+
+  &nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/sitemap.xml">Google网站地图</a></span>
+
+  </span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2157651"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 --> <script type="text/javascript" src="/js/src/love.js"></script>
