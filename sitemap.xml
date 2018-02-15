@@ -2,72 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://mrgo.top/about/index.html</loc>
+    <loc>http://mrgo.top/2018/02/13/%E6%B5%85%E6%9E%90nodejs-%E4%BA%8C/</loc>
     
-    <lastmod>2018-02-14T09:21:20.386Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/14/day4-%E5%89%AF%E6%9C%AC-7/</loc>
-    
-    <lastmod>2018-02-14T07:48:17.383Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/14/day4-%E5%89%AF%E6%9C%AC-6/</loc>
-    
-    <lastmod>2018-02-14T07:48:08.510Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/14/day4-%E5%89%AF%E6%9C%AC-5/</loc>
-    
-    <lastmod>2018-02-14T07:47:59.196Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/14/day4-%E5%89%AF%E6%9C%AC-3/</loc>
-    
-    <lastmod>2018-02-14T07:47:49.015Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/14/day4-%E5%89%AF%E6%9C%AC-2/</loc>
-    
-    <lastmod>2018-02-14T07:46:19.551Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/14/day3/</loc>
-    
-    <lastmod>2018-02-14T07:46:03.906Z</lastmod>
+    <lastmod>2018-02-15T08:02:47.078Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://mrgo.top/2018/02/13/%E6%B5%85%E6%9E%90nodejs/</loc>
     
-    <lastmod>2018-02-14T07:45:50.181Z</lastmod>
+    <lastmod>2018-02-15T08:02:07.155Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://mrgo.top/2018/02/13/%E6%B5%85%E6%9E%90nodejs-%E4%BA%8C/</loc>
+    <loc>http://mrgo.top/2018/02/15/canvas/</loc>
     
-    <lastmod>2018-02-14T07:38:04.517Z</lastmod>
+    <lastmod>2018-02-15T08:01:10.898Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://mrgo.top/2018/02/13/hello-world/</loc>
+    <loc>http://mrgo.top/2018/02/15/hello-world/</loc>
     
-    <lastmod>2018-02-13T16:39:33.837Z</lastmod>
+    <lastmod>2018-02-15T07:51:18.248Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mrgo.top/404.html</loc>
+    
+    <lastmod>2018-02-15T06:13:24.987Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mrgo.top/about/index.html</loc>
+    
+    <lastmod>2018-02-14T09:21:20.386Z</lastmod>
     
   </url>
   
@@ -89,27 +61,6 @@
     <loc>http://mrgo.top/categories/index.html</loc>
     
     <lastmod>2018-02-13T14:45:13.109Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/14/day4/</loc>
-    
-    <lastmod>2017-07-25T09:50:36.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/14/day4-%E5%89%AF%E6%9C%AC-4/</loc>
-    
-    <lastmod>2017-07-25T09:50:36.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/14/day4-%E5%89%AF%E6%9C%AC/</loc>
-    
-    <lastmod>2017-07-25T09:50:36.000Z</lastmod>
     
   </url>
   

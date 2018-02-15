@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="canvas," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="canvascanvas画线条基本步骤 编写canvas标签 1&amp;lt;canvas&amp;gt;/&amp;lt;canvas&amp;gt;  获取canvas的dom元素 1var cas=document.querySelector(&quot;canvas&quot;);  获取canvas的上下文对象(画笔) 1var ctx=cas.getContext(&quot;2d&quot;);">
+<meta name="keywords" content="canvas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas">
+<meta property="og:url" content="http://mrgo.top/2018/02/15/canvas/index.html">
+<meta property="og:site_name" content="MrGo-Blog">
+<meta property="og:description" content="canvascanvas画线条基本步骤 编写canvas标签 1&amp;lt;canvas&amp;gt;/&amp;lt;canvas&amp;gt;  获取canvas的dom元素 1var cas=document.querySelector(&quot;canvas&quot;);  获取canvas的上下文对象(画笔) 1var ctx=cas.getContext(&quot;2d&quot;);">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-15T08:01:10.898Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas">
+<meta name="twitter:description" content="canvascanvas画线条基本步骤 编写canvas标签 1&amp;lt;canvas&amp;gt;/&amp;lt;canvas&amp;gt;  获取canvas的dom元素 1var cas=document.querySelector(&quot;canvas&quot;);  获取canvas的上下文对象(画笔) 1var ctx=cas.getContext(&quot;2d&quot;);">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mrgo.top/2018/02/15/canvas/"/>
+
+
+
+
+
+  <title>canvas | MrGo-Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband">
+      <a href="https://github.com/DAAI093">
+        <img style="position: absolute; top: 0; right: 0; border: 0;"
+        src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67"
+         alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MrGo-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Web\Linux</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mrgo.top/2018/02/15/canvas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MrGo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MrGo-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">canvas</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-15T04:54:00+08:00">
+                2018-02-15
+              </time>
+            
+
+            
+              <span id="busuanzi_container_page_pv">&nbsp;&nbsp;|&nbsp;&nbsp;阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,726
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h1><h2 id="canvas画线条基本步骤"><a href="#canvas画线条基本步骤" class="headerlink" title="canvas画线条基本步骤"></a>canvas画线条基本步骤</h2><ol>
+<li><p>编写canvas标签</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas&gt;<span class="regexp">/&lt;canvas&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取canvas的dom元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cas=<span class="built_in">document</span>.querySelector(<span class="string">"canvas"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取canvas的上下文对象(画笔)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ctx=cas.getContext(<span class="string">"2d"</span>);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+</li>
+<li><p>设置起点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.moveTo(x,y);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置终点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.lineTo(x,y);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>描边(连线)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.stroke();</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+<h2 id="设置canvas的宽度和高度"><a href="#设置canvas的宽度和高度" class="headerlink" title="设置canvas的宽度和高度"></a>设置canvas的宽度和高度</h2><ol>
+<li>在css中直接设置宽度和高度 其实是拉伸</li>
+<li>在标签中通过属性的方式写宽度和高度(不叫做行内!!! )</li>
+</ol>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ol>
+<li><p>如果不写moveTo的话 那么lineTo 既是终点也是起点</p>
+</li>
+<li><p>首尾相连:  </p>
+<ol>
+<li>手动写lineTo</li>
+<li>ctx.closePath();</li>
+</ol>
+</li>
+<li><p>h5新标签</p>
+<ol>
+<li><p>color标签 一般结合 onchange一起使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"color"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<input type="color">
+</blockquote>
+</li>
+<li><p>number标签</p>
+<ol>
+<li>min 最小值</li>
+<li>max 最大值</li>
+<li>value 当前的值</li>
+<li>step 步长</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">min</span>=<span class="string">0</span> <span class="attr">max</span>=<span class="string">10</span> <span class="attr">value</span>=<span class="string">0</span> <span class="attr">step</span>=<span class="string">1</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<input type="number">
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>操作数组的4个方法</p>
+<ol>
+<li><p><strong>原数组 arr=[a,b,c,d,e];</strong></p>
+</li>
+<li><p>push 往屁股添加一个值 返回数组的长度  如: </p>
+<blockquote>
+<p>6= arr.push(f)  arr= [a, b, c, d,e,f];</p>
+</blockquote>
+</li>
+<li><p>pop   从屁股移除一个值 返回被删除的值 如: </p>
+<blockquote>
+<p>e= arr.pop()   arr=[a,b,c,d];</p>
+</blockquote>
+</li>
+<li><p>unshift 从头部添加一个值 返回数组的长度如:</p>
+<blockquote>
+<p>6= arr.unshift(f)  arr=[f,a,b,c,d,e];</p>
+</blockquote>
+</li>
+<li><p>shift 从头部删除一个值 返回被删除的值 如:</p>
+<blockquote>
+<p>a= arr.shift()  arr=[b,c,d,e];</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>eval 方法 可以把字符串变成代码执行  不要在工作里面出现 </p>
+</li>
+</ol>
+<h2 id="stroke和fill"><a href="#stroke和fill" class="headerlink" title="stroke和fill"></a>stroke和fill</h2><ol>
+<li>stroke 描边-对在同一条路径上的图形进行描边(封闭和不封闭)</li>
+<li>fill 填充 对同一条路径上的<strong>用线条画(不能填充strokeRect()的矩形)</strong>的封闭图形进行填充</li>
+</ol>
+<h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><ol>
+<li>路径也是图形</li>
+<li>判断两个图形是否在同一条路径上 不能够靠视觉上的首尾相连来判断</li>
+<li>而是看有没有调用 ctx.beginPath();</li>
+<li>一般在画新图形之前,最好要 开启一条新的路径 </li>
+</ol>
+<h2 id="线条属性"><a href="#线条属性" class="headerlink" title="线条属性"></a>线条属性</h2><ol>
+<li><p>颜色</p>
+<blockquote>
+<p>ctx.strokeStyle=”red”;</p>
+<p>ctx.fillStyle=”red”;</p>
+</blockquote>
+</li>
+<li><p>宽度</p>
+<blockquote>
+<p>ctx.lineWidth=10;</p>
+</blockquote>
+</li>
+<li><p>线段末端类型</p>
+<ol>
+<li>miter 默认</li>
+<li>round 突出圆角</li>
+<li>square 突出矩形</li>
+<li>ctx.lineCap=”miter”;</li>
+</ol>
+</li>
+<li><p>线段相交点的类型</p>
+<ol>
+<li>butt 屁股 默认值</li>
+<li>round 圆角</li>
+<li>bevel 平切</li>
+<li>ctx.lineJoin=”butt”;</li>
+</ol>
+</li>
+<li><p>虚线</p>
+<ol>
+<li>setLineDash([实线的长度,实线的间隙的长度……])  设置虚线</li>
+<li>getLineDash() 获取虚线</li>
+<li>lineDashOffset=1 设置虚线的偏移值</li>
+</ol>
+</li>
+</ol>
+<h2 id="内置画矩形和擦除"><a href="#内置画矩形和擦除" class="headerlink" title="内置画矩形和擦除"></a>内置画矩形和擦除</h2><ol>
+<li>画矩形 stokeRect(x,y,width.height)</li>
+<li>填充矩形 fillRect(x,y,width,height)</li>
+<li>擦除 clearRect(x,y,width,height)</li>
+</ol>
+<h2 id="内置画圆弧"><a href="#内置画圆弧" class="headerlink" title="内置画圆弧"></a>内置画圆弧</h2><ol>
+<li>360 度=PI*2   </li>
+<li>return  Math.PI/180* num</li>
+<li>ctx.arc(圆心x,圆心y,半径,开始的<strong>弧度</strong>,结束的<strong>弧度</strong>,?是否反向)</li>
+</ol>
+<h2 id="内置-画图片"><a href="#内置-画图片" class="headerlink" title="内置 画图片"></a>内置 画图片</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤:"></a>步骤:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> img=<span class="keyword">new</span> Image();</span><br><span class="line">img.src=<span class="string">"路径"</span>;</span><br><span class="line">img.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  ctx.drawImage()......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法解释"><a href="#方法解释" class="headerlink" title="方法解释"></a>方法解释</h3><ol>
+<li>3个参数  drawImage(图片对象,画在画布的x,画在画布的y);</li>
+<li>5个参数  drawImage(图片对象,画在画布的x,画在画布的y,画多宽,画多高);</li>
+<li>9个参数 drawImage(图片对象, 原图的x,原图的y,原图的宽,原图的高, 画在画布的x,画在画布的y,画多宽,画多高);</li>
+</ol>
+<h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><p>决定渐变图案的因素</p>
+<ol>
+<li>颜色</li>
+<li>方向</li>
+<li>长度</li>
+</ol>
+<p>代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> g=ctx.creatLinearGradient(开始的坐标x,y,结束的坐标x,y);</span><br><span class="line">g.addColorStop(<span class="number">0</span>,<span class="string">"red"</span>);</span><br><span class="line">g.addColorStop(<span class="number">1</span>,<span class="string">"black"</span>);</span><br><span class="line">ctx.strokeStyle=g;</span><br><span class="line">ctx.fillStyle=g;</span><br><span class="line">ctx.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">50</span>,<span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h2><p>ctx.strokeText(“文本”,x,y);</p>
+<p>ctx.fillText(“文本”,x,y);</p>
+<p>ctx.font=”50px 宋体”</p>
+<blockquote>
+<p>font的设置和在css中的设置一样</p>
+</blockquote>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><p>ctx.shadowBlur  模糊值</p>
+<p>ctx.shadowColor 颜色</p>
+<p>ctx.shadowOffsetX x 偏移</p>
+<p>ctx.shadowOffsetY y 偏移</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ctx.shadowBlur=<span class="number">10</span>;</span><br><span class="line">ctx.shadowColor=<span class="string">"red"</span>;</span><br><span class="line">ctx.shadowOffsetX=<span class="number">10</span>;</span><br><span class="line">ctx.shadowOffsetY=<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="canvas中的转换"><a href="#canvas中的转换" class="headerlink" title="canvas中的转换"></a>canvas中的转换</h2><h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><h4 id="css3中的移动和canvas中的移动的区别"><a href="#css3中的移动和canvas中的移动的区别" class="headerlink" title="css3中的移动和canvas中的移动的区别"></a>css3中的移动和canvas中的移动的区别</h4><h5 id="css3中的移动"><a href="#css3中的移动" class="headerlink" title="css3中的移动"></a>css3中的移动</h5><ol>
+<li>移动的是自身的dom元素</li>
+<li>移动的值 是覆盖的 先 translateX(100px) 再 tranlateX(200px) 最终的值 是 ranlateX(200px)</li>
+<li>移动的单位 一个 百分比 %  一个是像素 px </li>
+</ol>
+<h5 id="canvas中的移动"><a href="#canvas中的移动" class="headerlink" title="canvas中的移动"></a>canvas中的移动</h5><ol>
+<li><p>移动的是坐标系</p>
+</li>
+<li><p>移动的值是叠加的  先 translateX(100px) 再 tranlateX(200px) 最终的值 是 ranlateX(300px)</p>
+</li>
+<li><p>单位  不用写单位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.translate(1,1)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><h4 id="css3中的旋转和canvas中的旋转的区别"><a href="#css3中的旋转和canvas中的旋转的区别" class="headerlink" title="css3中的旋转和canvas中的旋转的区别"></a>css3中的旋转和canvas中的旋转的区别</h4><h5 id="css3中的旋转"><a href="#css3中的旋转" class="headerlink" title="css3中的旋转"></a>css3中的旋转</h5><ol>
+<li>旋转的自身的dom元素</li>
+<li>旋转的值 是覆盖的 </li>
+<li>单位 是  角度</li>
+<li>旋转的中心点 是元素的中心 center center</li>
+</ol>
+<h5 id="canvas中的旋转"><a href="#canvas中的旋转" class="headerlink" title="canvas中的旋转"></a>canvas中的旋转</h5><ol>
+<li>旋转的是坐标系</li>
+<li>旋转的值 是叠加的</li>
+<li>单位 是 弧度!!!! </li>
+<li>旋转的中心点是坐标系的圆点 0 0 </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.rotate(degToArc(10));</span><br></pre></td></tr></table></figure>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>环境 值 坐标系和线条属性 </p>
+<h3 id="保存和还原"><a href="#保存和还原" class="headerlink" title="保存和还原"></a>保存和还原</h3><p>保存的是 坐标系 和 线条属性</p>
+<p>还原的是 坐标系 和 线条属性</p>
+<p>保存了几次 就可以还原几次 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.save()</span><br><span class="line">ctx.restore();</span><br></pre></td></tr></table></figure>
+<h3 id="擦除和重置"><a href="#擦除和重置" class="headerlink" title="擦除和重置"></a>擦除和重置</h3><h4 id="擦除"><a href="#擦除" class="headerlink" title="擦除"></a>擦除</h4><p>ctx.clearRect(<strong>0,0</strong>,100,100)   有时候 坐标系改变了的话 再使用擦除这个代码  坐标不一定是 <strong>0   0</strong>  </p>
+<p>不能擦除坐标系  不能擦除线条属性(颜色 大小 虚线 末端  相交🍌)</p>
+<h4 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h4><p>cas.width=cas.width  </p>
+<p>可以擦除画图的图案  可以重置坐标系  可以重置线条属性  </p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><h3 id="标签实现"><a href="#标签实现" class="headerlink" title="标签实现"></a>标签实现</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"资源路径"</span> <span class="attr">download</span>=<span class="string">"资源名字(可以随便写)"</span> &gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 1 创建a标签</span><br><span class="line">var aDom=document.createElement(&quot;a&quot;);</span><br><span class="line">// 2 指定 href</span><br><span class="line">aDom.href=&quot;资源路径&quot;;</span><br><span class="line">// 3 设置download属性</span><br><span class="line">aDom.download=&quot;五年高考&quot;;</span><br><span class="line">// 4 手动触发 a标签的点击行为</span><br><span class="line">aDom.click();//它是个方法 不是 事件</span><br></pre></td></tr></table></figure>
+<h2 id="画布保存和下载"><a href="#画布保存和下载" class="headerlink" title="画布保存和下载"></a>画布保存和下载</h2><h3 id="获取canvas画布的路径-cas-toDataURL"><a href="#获取canvas画布的路径-cas-toDataURL" class="headerlink" title="获取canvas画布的路径 cas.toDataURL()"></a>获取canvas画布的路径 cas.toDataURL()</h3><h4 id="cas-ToDataURL-图片类型-质量"><a href="#cas-ToDataURL-图片类型-质量" class="headerlink" title="cas.ToDataURL(图片类型,质量)"></a>cas.ToDataURL(图片类型,质量)</h4><h5 id="图片类型"><a href="#图片类型" class="headerlink" title="图片类型"></a>图片类型</h5><ol>
+<li>image/png<ol>
+<li>默认值 即 cas.toDataURL() 既可以</li>
+<li>不能压缩</li>
+</ol>
+</li>
+<li>image/jpeg<ol>
+<li>可以压缩  </li>
+<li>默认会把透明背景填充成黑色</li>
+<li>建议在使用它的时候 先手动fill 画布 成白色</li>
+</ol>
+</li>
+</ol>
+<h5 id="质量-0-1-0-最低-1-最高"><a href="#质量-0-1-0-最低-1-最高" class="headerlink" title="质量(0-1) 0 最低 1 最高"></a>质量(0-1) 0 最低 1 最高</h5><h2 id="画视频"><a href="#画视频" class="headerlink" title="画视频"></a>画视频</h2><p>将video标签传入 ctx.drawImage(video,0,0) 即可 参数和 之前画图片的一样</p>
+<h3 id="在线视频截图下载"><a href="#在线视频截图下载" class="headerlink" title="在线视频截图下载"></a>在线视频截图下载</h3><p>报错: <code>Uncaught DOMException: Failed to execute &#39;toDataURL&#39; on &#39;HTMLCanvasElement&#39;: Tainted canvases may not be exported.</code></p>
+<p>解决:<strong>以服务器的形式打开即可</strong></p>
+<h2 id="和canvas相关的技术"><a href="#和canvas相关的技术" class="headerlink" title="和canvas相关的技术"></a>和canvas相关的技术</h2><ol>
+<li>echartjs<ol>
+<li>百度 数据展示 文档详细 基于配置</li>
+</ol>
+</li>
+<li>konvajs<ol>
+<li>国外 自定义图形 类jq和js的关系</li>
+</ol>
+</li>
+<li>three.js<ol>
+<li>国外 3d模拟 门槛高 电脑性能要求高</li>
+</ol>
+</li>
+<li>d3.js<ol>
+<li>国外 大数据 门槛中 数据分析</li>
+</ol>
+</li>
+</ol>
+<h1 id="移动web"><a href="#移动web" class="headerlink" title="移动web"></a>移动web</h1><h2 id="失真"><a href="#失真" class="headerlink" title="失真"></a>失真</h2><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>图片的清晰度和设备的清晰度不一致</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h3><ol>
+<li><p>不用解决 忍受 模糊 </p>
+</li>
+<li><p>全部高清图 最常用 </p>
+</li>
+<li><p>srcset 设备像素比的方式 devicePixelRatio  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./images/科比.png"</span> <span class="attr">srcset</span>=<span class="string">"./images/赵丽颖.png 2x,./images/高圆圆.png 3x"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li>逻辑分辨率:屏幕的宽和高 单位 是px  </li>
+<li>设备分辨率:屏幕里面一共拥有的物理像素点的个数!!!</li>
+<li>对角线:一般说的手机屏幕尺寸都是指对角线的长度 单位 是英寸 </li>
+<li>PPI (Pixels Per Inch)也叫像素密度，所表示的是每英寸所拥有的像素数量 值越高,越清晰</li>
+</ol>
+<h2 id="视口"><a href="#视口" class="headerlink" title="视口"></a>视口</h2><h3 id="布局视口"><a href="#布局视口" class="headerlink" title="布局视口"></a>布局视口</h3><p>被手机厂商设置宽度为980px的视口</p>
+<h3 id="理想视口"><a href="#理想视口" class="headerlink" title="理想视口"></a>理想视口</h3><p>视口宽度和屏幕等宽并且使用绝对长度单位写元素大小 是固定</p>
+<p>在代码里面如何写处理</p>
+<p><code>meta:vp+tab</code> </p>
+<h4 id="不标准的"><a href="#不标准的" class="headerlink" title="不标准的"></a>不标准的</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="标准的写法"><a href="#标准的写法" class="headerlink" title="标准的写法"></a>标准的写法</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><h3 id="编译工具"><a href="#编译工具" class="headerlink" title="编译工具"></a>编译工具</h3><h4 id="考拉"><a href="#考拉" class="headerlink" title="考拉"></a>考拉</h4><h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><ol>
+<li>需要将 整个 <strong>css文件夹</strong>  都拖放到考拉当中</li>
+<li>存放less文件的文件夹的名字不能够包含 <strong>less</strong> 字段</li>
+<li>新创建less文件的时候 需要手动点击一下 考拉 里面的刷新按钮 <strong>reflash</strong></li>
+</ol>
+<h4 id="vs-code-中的插件-easyless"><a href="#vs-code-中的插件-easyless" class="headerlink" title="vs code 中的插件 easyless"></a>vs code 中的插件 easyless</h4><p>直接在vs code中下载 启用即可  </p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法:"></a>语法:</h3><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@myColor:</span>red;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>:<span class="variable">@myColor</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不带参数的函数</span></span><br><span class="line"><span class="selector-class">.changeColor1</span>()&#123;</span><br><span class="line">  <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="selector-class">.changeColor1</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 带参数的函数</span></span><br><span class="line"><span class="selector-class">.changeColor2</span>(<span class="variable">@c</span>)&#123;</span><br><span class="line">  <span class="attribute">color</span>:<span class="variable">@c</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="selector-class">.changeColor2</span>(red);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 带默认参数的函数</span></span><br><span class="line"><span class="selector-class">.changeColor3</span>(<span class="variable">@c</span>:black)&#123;</span><br><span class="line">  <span class="attribute">color</span>:<span class="variable">@c</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="selector-class">.changeColor3</span>();<span class="comment">// color:black;</span></span><br><span class="line">  <span class="selector-class">.changeColor3</span>(red);<span class="comment">// color:red;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<h4 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-pseudo">:after</span>&#123;&#125;</span><br><span class="line">  <span class="selector-tag">p</span>&#123;&#125;</span><br><span class="line">  &gt;<span class="selector-tag">section</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<h4 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">"base.less"</span>;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这种注释不会被编译到css中</span></span><br><span class="line"><span class="comment">/* 这种注释会被编译到css中 */</span></span><br></pre></td></tr></table></figure>
+<h3 id="真机调试"><a href="#真机调试" class="headerlink" title="真机调试"></a>真机调试</h3><p>ghostlab</p>
+<p><a href="http://wetest.qq.com/cloud/index.php/help/cloudindex" target="_blank" rel="noopener">云真机</a></p>
+<p>工作中如何对待:</p>
+<p>1 公司里面有测试 开发者的只要确保在 模拟器上 没有bug 就可以了.</p>
+<p>2 大公司里 有第三方的测试团队去测试  </p>
+<p>3 小小的公司  公司人少 只能够自己去测试 (再去研究真机调试的步骤)</p>
+<p>5 在学习的时候 可以先不用管真机调试 .以后用到的时候再去搭建环境和步骤就可以 了 !!! </p>
+<h2 id="触屏事件"><a href="#触屏事件" class="headerlink" title="触屏事件"></a>触屏事件</h2><h3 id="触屏事件的种类"><a href="#触屏事件的种类" class="headerlink" title="触屏事件的种类"></a>触屏事件的种类</h3><p>touchstart  手指按下屏幕</p>
+<p>touchemove  手指在屏幕上滑动</p>
+<p>touchend 手指离开屏幕</p>
+<h3 id="三个触摸点数组"><a href="#三个触摸点数组" class="headerlink" title="三个触摸点数组"></a>三个触摸点数组</h3><p>touches  屏幕上所有的触摸点的集合</p>
+<p>targetTouches 目标元素上的触摸点的集合</p>
+<p>changedTouches 在目标元素上发生了状态改变(进入 离开 移动)的触摸点的集合</p>
+<h3 id="三对坐标信息"><a href="#三对坐标信息" class="headerlink" title="三对坐标信息"></a>三对坐标信息</h3><p>clientX/Y 相对于视口的坐标</p>
+<p>pageX/Y 相对于页面的坐标</p>
+<p>screenX/Y 相对屏幕的坐标</p>
+<h3 id="触屏事件的注意点"><a href="#触屏事件的注意点" class="headerlink" title="触屏事件的注意点"></a>触屏事件的注意点</h3><h4 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h4><ol>
+<li>鼠标事件不能模拟多指触控</li>
+<li>click点击事件在移动端存在延迟<ol>
+<li>原因  手机厂商为了用户更方便的放大页面</li>
+<li>延迟机制:<ol>
+<li>第一次点击后,先等待一段时间 这一段时间过后 <ol>
+<li>判断有没有第二次的点击发生 有 触发双击放大</li>
+<li>没有的再触发单击</li>
+</ol>
+</li>
+<li>不管有没有第二次的点击 都需要等待 -  延迟</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>触屏事件不能在pc端上触发</li>
+<li>建议绑定事件的时候 用 addEventListener  来绑定  </li>
+</ol>
+<h4 id="手势封装tap"><a href="#手势封装tap" class="headerlink" title="手势封装tap"></a>手势封装tap</h4><p>判断依据:</p>
+<ol>
+<li>手指个数不能超过1</li>
+<li>按下时间不能超过300ms</li>
+<li>滑动距离不能超过5px</li>
+</ol>
+<h4 id="手势封装swipe"><a href="#手势封装swipe" class="headerlink" title="手势封装swipe"></a>手势封装swipe</h4><p>判断依据:</p>
+<ol>
+<li>手指个数不能超过1</li>
+<li>按下时间不能超过800ms</li>
+<li>滑动距离不能小于15px</li>
+</ol>
+<h3 id="京东轮播图"><a href="#京东轮播图" class="headerlink" title="京东轮播图"></a>京东轮播图</h3><h4 id="过渡结束事件"><a href="#过渡结束事件" class="headerlink" title="过渡结束事件"></a>过渡结束事件</h4><p>transitionend 每一次过渡结束的时候 都会触发一次</p>
+<h3 id="移动端轮播图插件-swiper-js"><a href="#移动端轮播图插件-swiper-js" class="headerlink" title="移动端轮播图插件 swiper.js"></a>移动端轮播图插件 swiper.js</h3><p>我们使用的版本是3.x版本</p>
+<p>使用教程看官网即可 </p>
+<p><a href="http://www.swiper.com.cn/" target="_blank" rel="noopener">网站</a></p>
+<h3 id="vs-code-插件"><a href="#vs-code-插件" class="headerlink" title="vs code 插件"></a>vs code 插件</h3><p>1 安装 ease Server 插件 (同步刷新功能)</p>
+<p>2 在当前的html页面中 输入 <code>ctrl+shift+enter</code></p>
+<h3 id="自己构建zepto"><a href="#自己构建zepto" class="headerlink" title="自己构建zepto"></a>自己构建zepto</h3><p>1 先安装好 <strong>nodejs</strong>   在cmd中输入 <code>node -v</code>  如果出现了版本号 证明安装成功了 </p>
+<p>2 在zepto文件夹内 按下 <code>shift+鼠标右键</code> 弹出命令行窗口</p>
+<p>3 输入 <code>npm install</code></p>
+<p>4 执行编译 <code>npm run-script dist</code></p>
+<p>5 自己设置要编译的模块 <code>SET MODULES=zepto event data touch</code>  </p>
+<p>6 执行编译 <code>npm run-script dist</code></p>
+<h1 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念:"></a>概念:</h2><p>用一套代码 可以做一个适应不同宽度的设备,还可以提供比较友好的用户体验</p>
+<h2 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理:"></a>核心原理:</h2><p>媒体查询</p>
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><p>一种css的语法,可以根据设备的不同(主要是宽度),去加载对应的css代码</p>
+<h2 id="媒体查询的知识点"><a href="#媒体查询的知识点" class="headerlink" title="媒体查询的知识点"></a>媒体查询的知识点</h2><h3 id="媒体类型"><a href="#媒体类型" class="headerlink" title="媒体类型"></a>媒体类型</h3><ol>
+<li>all 包括一下两个类型</li>
+<li>screen 带正常屏幕的设备</li>
+<li>print 打印机</li>
+</ol>
+<h3 id="媒体特性"><a href="#媒体特性" class="headerlink" title="媒体特性"></a>媒体特性</h3><ol>
+<li><p>宽度</p>
+</li>
+<li><p>高度</p>
+</li>
+<li><p>视口的宽高比      </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 2/1 不能改为  2</span><br><span class="line">@media screen and (aspect-ratio:2/1)&#123;</span><br><span class="line">  body&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="媒体关键字"><a href="#媒体关键字" class="headerlink" title="媒体关键字"></a>媒体关键字</h3><ol>
+<li>and</li>
+<li>or 代码中写逗号 来体现</li>
+<li>not 取反</li>
+<li>only 用来做兼容 </li>
+</ol>
+<h3 id="媒体查询的引入方式"><a href="#媒体查询的引入方式" class="headerlink" title="媒体查询的引入方式"></a>媒体查询的引入方式</h3><ol>
+<li><strong>在css(和一般的样式代码是同层级)中直接写媒体查询-用得最多</strong></li>
+<li>在style标签上 通过属性的方式 </li>
+<li>在link标签上 通过属性的方式 </li>
+</ol>
+<h2 id="bootstrap框架"><a href="#bootstrap框架" class="headerlink" title="bootstrap框架"></a>bootstrap框架</h2><h2 id="栅格系统"><a href="#栅格系统" class="headerlink" title="栅格系统"></a>栅格系统</h2><p>是把所有屏幕(4种屏幕) 分成了12份 每一列占一份</p>
+<h3 id="4种宽度不同的屏幕"><a href="#4种宽度不同的屏幕" class="headerlink" title="4种宽度不同的屏幕"></a>4种宽度不同的屏幕</h3><ol>
+<li>极小屏幕  xs &lt; 768px</li>
+<li>小屏幕  sm   768-992</li>
+<li>中等-普通屏幕   md   992-1200</li>
+<li>大屏幕  lg  &gt; 1200</li>
+</ol>
+<h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤:"></a>步骤:</h3><ol>
+<li>先写容器 .container(版心的宽度)  .container-fluid (全屏)</li>
+<li>写 .row</li>
+<li>再去写栅格(要注意标明屏幕的种类)</li>
+</ol>
+<h2 id="工具提示"><a href="#工具提示" class="headerlink" title="工具提示"></a>工具提示</h2><p>用法:</p>
+<ol>
+<li>直接粘贴标签的代码</li>
+<li>必须要写上一段初始化的js代码 </li>
+</ol>
+<h2 id="微金所"><a href="#微金所" class="headerlink" title="微金所"></a>微金所</h2><h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><h3 id="a标签不能嵌套a标签"><a href="#a标签不能嵌套a标签" class="headerlink" title="a标签不能嵌套a标签"></a>a标签不能嵌套a标签</h3><h3 id="nth-child和nth-of-type的区别"><a href="#nth-child和nth-of-type的区别" class="headerlink" title="nth-child和nth-of-type的区别"></a>nth-child和nth-of-type的区别</h3><ol>
+<li>nth-child 计算子元素索引的时候 会计算其他类型的标签</li>
+<li>nth-of-type 计算子元素的索引的时候 不会计算其他类型的标签</li>
+</ol>
+<h3 id="列嵌套-有时候代码怎么简单怎么写"><a href="#列嵌套-有时候代码怎么简单怎么写" class="headerlink" title="列嵌套-有时候代码怎么简单怎么写"></a>列嵌套-有时候代码怎么简单怎么写</h3><h3 id="在做大的布局的时候容器的时候-建议使用-块级元素-千万不要写行内嵌套块级元素"><a href="#在做大的布局的时候容器的时候-建议使用-块级元素-千万不要写行内嵌套块级元素" class="headerlink" title="在做大的布局的时候容器的时候 建议使用 块级元素 (千万不要写行内嵌套块级元素)"></a>在做大的布局的时候容器的时候 建议使用 块级元素 (千万不要写行内嵌套块级元素)</h3><h1 id="rem-媒体查询-布局"><a href="#rem-媒体查询-布局" class="headerlink" title="rem+媒体查询 布局"></a>rem+媒体查询 布局</h1><h2 id="rem和px和em的区别"><a href="#rem和px和em的区别" class="headerlink" title="rem和px和em的区别"></a>rem和px和em的区别</h2><ol>
+<li>px是绝对长度单位</li>
+<li>em是相对长度单位 相对于自身的fontsize<ol>
+<li>谷歌浏览器默认字体是16px</li>
+<li>谷歌浏览器默认最小字体是12px</li>
+</ol>
+</li>
+<li>rem 是相对长度单位  相对于html标签的fontsize</li>
+</ol>
+<h2 id="实现屏幕适配的步骤"><a href="#实现屏幕适配的步骤" class="headerlink" title="实现屏幕适配的步骤"></a>实现屏幕适配的步骤</h2><ol>
+<li>使用rem+媒体查询还原设计稿</li>
+<li>使用rem+媒体查询去做屏幕适配</li>
+</ol>
+<h2 id="适配的注意事项"><a href="#适配的注意事项" class="headerlink" title="适配的注意事项"></a>适配的注意事项</h2><ol>
+<li>基础值 和设计稿等宽的媒体查询里面的html标签的fontsize  为100px</li>
+<li>写100px 是为了方便计算</li>
+<li>公式: <code>fontsize=基础值*要适配的屏幕/设计稿的宽度</code></li>
+<li>不建议使用js来代替媒体查询的功能</li>
+<li>任何宽度的设计稿都可以用这套解决方案</li>
+<li>pc端的滚动条占宽度 移动端的滚动条不占宽度</li>
+</ol>
+<h2 id="在线工具"><a href="#在线工具" class="headerlink" title="在线工具"></a>在线工具</h2><p><a href="http://www.biaonimeia.com/project" target="_blank" rel="noopener">标你妹</a></p>
+<p><a href="http://mxd.tencent.com/wp-content/uploads/2014/11/rem.html" target="_blank" rel="noopener">px转rem工具</a></p>
+<h1 id="开发技巧"><a href="#开发技巧" class="headerlink" title="开发技巧"></a>开发技巧</h1><h2 id="less和souce-map"><a href="#less和souce-map" class="headerlink" title="less和souce map"></a>less和souce map</h2><h3 id="souce-map"><a href="#souce-map" class="headerlink" title="souce map"></a>souce map</h3><p>存放了less文件和css文件的映射关系</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>可以从页面调试工具里面 直接映射会对应的less文件</p>
+<h3 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤:"></a>步骤:</h3><ol>
+<li><p>使用工具创建souce map (考拉 vs code中插件 easyless)</p>
+<ol>
+<li><p>考拉</p>
+</li>
+<li><p>easyless 插件</p>
+<ol>
+<li><p>需要在vs code 的设置中 加入以下代码 就可以了 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;less.compile&quot;: &#123;</span><br><span class="line">        &quot;sourceMap&quot;: true  // true =&gt; generate source maps (.css.map files)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>需要在谷歌浏览器中开启</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+          
+
+  	         
+    </div>
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="MrGo wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/canvas/" rel="tag"> <i class="fa fa-tag"></i> canvas</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/13/浅析nodejs-二/" rel="next" title="浅析node(二)">
+                <i class="fa fa-chevron-left"></i> 浅析node(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/15/hello-world/" rel="prev" title="First Blog">
+                First Blog <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="MrGo" />
+          <p class="site-author-name" itemprop="name">MrGo</p>
+           
+              <p class="site-description motion-element" itemprop="description">为了每一次遇见不变的纯真</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/DAAI093 || github" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:mrgowell1994@gmail.com || envelope" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100012734470392 || facebook" target="_blank" title="FB Page">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                    
+                      FB Page
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/2965761403/profile?topnav=1&wvr=6 || weibo" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=92224&auto=0&height=66"></iframe>
+
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog/" title="阮一峰的博客" target="_blank">阮一峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.liaoxuefeng.com/" title="廖雪峰博客" target="_blank">廖雪峰博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://f2ex.cn/" title="F2EX前端开发资源库" target="_blank">F2EX前端开发资源库</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#canvas"><span class="nav-number">1.</span> <span class="nav-text">canvas</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#canvas画线条基本步骤"><span class="nav-number">1.1.</span> <span class="nav-text">canvas画线条基本步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置canvas的宽度和高度"><span class="nav-number">1.2.</span> <span class="nav-text">设置canvas的宽度和高度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意点"><span class="nav-number">1.3.</span> <span class="nav-text">注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stroke和fill"><span class="nav-number">1.4.</span> <span class="nav-text">stroke和fill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路径"><span class="nav-number">1.5.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线条属性"><span class="nav-number">1.6.</span> <span class="nav-text">线条属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置画矩形和擦除"><span class="nav-number">1.7.</span> <span class="nav-text">内置画矩形和擦除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置画圆弧"><span class="nav-number">1.8.</span> <span class="nav-text">内置画圆弧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置-画图片"><span class="nav-number">1.9.</span> <span class="nav-text">内置 画图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">1.9.1.</span> <span class="nav-text">步骤:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法解释"><span class="nav-number">1.9.2.</span> <span class="nav-text">方法解释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渐变"><span class="nav-number">1.10.</span> <span class="nav-text">渐变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字"><span class="nav-number">1.11.</span> <span class="nav-text">文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阴影"><span class="nav-number">1.12.</span> <span class="nav-text">阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#canvas中的转换"><span class="nav-number">1.13.</span> <span class="nav-text">canvas中的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动"><span class="nav-number">1.13.1.</span> <span class="nav-text">移动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#css3中的移动和canvas中的移动的区别"><span class="nav-number">1.13.1.1.</span> <span class="nav-text">css3中的移动和canvas中的移动的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#css3中的移动"><span class="nav-number">1.13.1.1.1.</span> <span class="nav-text">css3中的移动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#canvas中的移动"><span class="nav-number">1.13.1.1.2.</span> <span class="nav-text">canvas中的移动</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旋转"><span class="nav-number">1.13.2.</span> <span class="nav-text">旋转</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#css3中的旋转和canvas中的旋转的区别"><span class="nav-number">1.13.2.1.</span> <span class="nav-text">css3中的旋转和canvas中的旋转的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#css3中的旋转"><span class="nav-number">1.13.2.1.1.</span> <span class="nav-text">css3中的旋转</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#canvas中的旋转"><span class="nav-number">1.13.2.1.2.</span> <span class="nav-text">canvas中的旋转</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">1.14.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#保存和还原"><span class="nav-number">1.14.1.</span> <span class="nav-text">保存和还原</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#擦除和重置"><span class="nav-number">1.14.2.</span> <span class="nav-text">擦除和重置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#擦除"><span class="nav-number">1.14.2.1.</span> <span class="nav-text">擦除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重置"><span class="nav-number">1.14.2.2.</span> <span class="nav-text">重置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载"><span class="nav-number">1.15.</span> <span class="nav-text">下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签实现"><span class="nav-number">1.15.1.</span> <span class="nav-text">标签实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.15.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#画布保存和下载"><span class="nav-number">1.16.</span> <span class="nav-text">画布保存和下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取canvas画布的路径-cas-toDataURL"><span class="nav-number">1.16.1.</span> <span class="nav-text">获取canvas画布的路径 cas.toDataURL()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cas-ToDataURL-图片类型-质量"><span class="nav-number">1.16.1.1.</span> <span class="nav-text">cas.ToDataURL(图片类型,质量)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#图片类型"><span class="nav-number">1.16.1.1.1.</span> <span class="nav-text">图片类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#质量-0-1-0-最低-1-最高"><span class="nav-number">1.16.1.1.2.</span> <span class="nav-text">质量(0-1) 0 最低 1 最高</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#画视频"><span class="nav-number">1.17.</span> <span class="nav-text">画视频</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在线视频截图下载"><span class="nav-number">1.17.1.</span> <span class="nav-text">在线视频截图下载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和canvas相关的技术"><span class="nav-number">1.18.</span> <span class="nav-text">和canvas相关的技术</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动web"><span class="nav-number">2.</span> <span class="nav-text">移动web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#失真"><span class="nav-number">2.1.</span> <span class="nav-text">失真</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-number">2.1.1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">2.1.2.</span> <span class="nav-text">解决方案:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">2.2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视口"><span class="nav-number">2.3.</span> <span class="nav-text">视口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#布局视口"><span class="nav-number">2.3.1.</span> <span class="nav-text">布局视口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理想视口"><span class="nav-number">2.3.2.</span> <span class="nav-text">理想视口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不标准的"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">不标准的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标准的写法"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">标准的写法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less"><span class="nav-number">2.4.</span> <span class="nav-text">less</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译工具"><span class="nav-number">2.4.1.</span> <span class="nav-text">编译工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#考拉"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">考拉</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意事项"><span class="nav-number">2.4.1.1.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vs-code-中的插件-easyless"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">vs code 中的插件 easyless</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">2.4.2.</span> <span class="nav-text">语法:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#嵌套"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">嵌套</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导入"><span class="nav-number">2.4.2.4.</span> <span class="nav-text">导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释"><span class="nav-number">2.4.2.5.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真机调试"><span class="nav-number">2.4.3.</span> <span class="nav-text">真机调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触屏事件"><span class="nav-number">2.5.</span> <span class="nav-text">触屏事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#触屏事件的种类"><span class="nav-number">2.5.1.</span> <span class="nav-text">触屏事件的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三个触摸点数组"><span class="nav-number">2.5.2.</span> <span class="nav-text">三个触摸点数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三对坐标信息"><span class="nav-number">2.5.3.</span> <span class="nav-text">三对坐标信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触屏事件的注意点"><span class="nav-number">2.5.4.</span> <span class="nav-text">触屏事件的注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">2.5.4.1.</span> <span class="nav-text">需求:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手势封装tap"><span class="nav-number">2.5.4.2.</span> <span class="nav-text">手势封装tap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手势封装swipe"><span class="nav-number">2.5.4.3.</span> <span class="nav-text">手势封装swipe</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#京东轮播图"><span class="nav-number">2.5.5.</span> <span class="nav-text">京东轮播图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#过渡结束事件"><span class="nav-number">2.5.5.1.</span> <span class="nav-text">过渡结束事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端轮播图插件-swiper-js"><span class="nav-number">2.5.6.</span> <span class="nav-text">移动端轮播图插件 swiper.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vs-code-插件"><span class="nav-number">2.5.7.</span> <span class="nav-text">vs code 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己构建zepto"><span class="nav-number">2.5.8.</span> <span class="nav-text">自己构建zepto</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应式布局"><span class="nav-number">3.</span> <span class="nav-text">响应式布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">3.1.</span> <span class="nav-text">概念:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心原理"><span class="nav-number">3.2.</span> <span class="nav-text">核心原理:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询"><span class="nav-number">3.3.</span> <span class="nav-text">媒体查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询的知识点"><span class="nav-number">3.4.</span> <span class="nav-text">媒体查询的知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体类型"><span class="nav-number">3.4.1.</span> <span class="nav-text">媒体类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体特性"><span class="nav-number">3.4.2.</span> <span class="nav-text">媒体特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体关键字"><span class="nav-number">3.4.3.</span> <span class="nav-text">媒体关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体查询的引入方式"><span class="nav-number">3.4.4.</span> <span class="nav-text">媒体查询的引入方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bootstrap框架"><span class="nav-number">3.5.</span> <span class="nav-text">bootstrap框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栅格系统"><span class="nav-number">3.6.</span> <span class="nav-text">栅格系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4种宽度不同的屏幕"><span class="nav-number">3.6.1.</span> <span class="nav-text">4种宽度不同的屏幕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-1"><span class="nav-number">3.6.2.</span> <span class="nav-text">步骤:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具提示"><span class="nav-number">3.7.</span> <span class="nav-text">工具提示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微金所"><span class="nav-number">3.8.</span> <span class="nav-text">微金所</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点"><span class="nav-number">3.8.1.</span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a标签不能嵌套a标签"><span class="nav-number">3.8.2.</span> <span class="nav-text">a标签不能嵌套a标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nth-child和nth-of-type的区别"><span class="nav-number">3.8.3.</span> <span class="nav-text">nth-child和nth-of-type的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列嵌套-有时候代码怎么简单怎么写"><span class="nav-number">3.8.4.</span> <span class="nav-text">列嵌套-有时候代码怎么简单怎么写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在做大的布局的时候容器的时候-建议使用-块级元素-千万不要写行内嵌套块级元素"><span class="nav-number">3.8.5.</span> <span class="nav-text">在做大的布局的时候容器的时候 建议使用 块级元素 (千万不要写行内嵌套块级元素)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rem-媒体查询-布局"><span class="nav-number">4.</span> <span class="nav-text">rem+媒体查询 布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#rem和px和em的区别"><span class="nav-number">4.1.</span> <span class="nav-text">rem和px和em的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现屏幕适配的步骤"><span class="nav-number">4.2.</span> <span class="nav-text">实现屏幕适配的步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配的注意事项"><span class="nav-number">4.3.</span> <span class="nav-text">适配的注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在线工具"><span class="nav-number">4.4.</span> <span class="nav-text">在线工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发技巧"><span class="nav-number">5.</span> <span class="nav-text">开发技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#less和souce-map"><span class="nav-number">5.1.</span> <span class="nav-text">less和souce map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#souce-map"><span class="nav-number">5.1.1.</span> <span class="nav-text">souce map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-number">5.1.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-2"><span class="nav-number">5.1.3.</span> <span class="nav-text">步骤:</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MrGo
+
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1272906403'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1272906403' type='text/javascript'%3E%3C/script%3E"));</script>
+
+  &nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/sitemap.xml">Google网站地图</a></span>
+
+  </span>
+</div>
+<!--
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+-->
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共8.8k字</span>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2157651"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>
+<!-- 页面点击小红心 --> <script type="text/javascript" src="/js/src/love.js"></script>

@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="同步和异步的对比【非阻塞I/O和阻塞I/O】 异步读取文件 异步嵌套读取文件 同步读取文件 异步和同步操作中，捕获错误的方式 Node 中的模块化 ​ ​ 什么是程序开发中的模块及好处  什么是程序开发中的模块化：把一些功能类似的代码，封装到一个单独的文件中去，这些单独抽离出来的代码文件，就能够提供各种各样好用的功能；这种通过代码功能分割文件的方式，叫做程序中的模块化； 好处：保证了每个文件的功">
+<meta name="description" content="同步和异步的对比【非阻塞I/O和阻塞I/O】 异步读取文件 异步嵌套读取文件 同步读取文件 异步和同步操作中，捕获错误的方式 Node 中的模块化 什么是程序开发中的模块及好处  什么是程序开发中的模块化：把一些功能类似的代码，封装到一个单独的文件中去，这些单独抽离出来的代码文件，就能够提供各种各样好用的功能；这种通过代码功能分割文件的方式，叫做程序中的模块化；  好处：保证了每个文件的功能（职">
 <meta name="keywords" content="node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅析node">
+<meta property="og:title" content="浅析node(二)">
 <meta property="og:url" content="http://mrgo.top/2018/02/13/浅析nodejs-二/index.html">
 <meta property="og:site_name" content="MrGo-Blog">
-<meta property="og:description" content="同步和异步的对比【非阻塞I/O和阻塞I/O】 异步读取文件 异步嵌套读取文件 同步读取文件 异步和同步操作中，捕获错误的方式 Node 中的模块化 ​ ​ 什么是程序开发中的模块及好处  什么是程序开发中的模块化：把一些功能类似的代码，封装到一个单独的文件中去，这些单独抽离出来的代码文件，就能够提供各种各样好用的功能；这种通过代码功能分割文件的方式，叫做程序中的模块化； 好处：保证了每个文件的功">
+<meta property="og:description" content="同步和异步的对比【非阻塞I/O和阻塞I/O】 异步读取文件 异步嵌套读取文件 同步读取文件 异步和同步操作中，捕获错误的方式 Node 中的模块化 什么是程序开发中的模块及好处  什么是程序开发中的模块化：把一些功能类似的代码，封装到一个单独的文件中去，这些单独抽离出来的代码文件，就能够提供各种各样好用的功能；这种通过代码功能分割文件的方式，叫做程序中的模块化；  好处：保证了每个文件的功能（职">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-14T07:38:04.517Z">
+<meta property="og:updated_time" content="2018-02-15T08:02:47.078Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅析node">
-<meta name="twitter:description" content="同步和异步的对比【非阻塞I/O和阻塞I/O】 异步读取文件 异步嵌套读取文件 同步读取文件 异步和同步操作中，捕获错误的方式 Node 中的模块化 ​ ​ 什么是程序开发中的模块及好处  什么是程序开发中的模块化：把一些功能类似的代码，封装到一个单独的文件中去，这些单独抽离出来的代码文件，就能够提供各种各样好用的功能；这种通过代码功能分割文件的方式，叫做程序中的模块化； 好处：保证了每个文件的功">
+<meta name="twitter:title" content="浅析node(二)">
+<meta name="twitter:description" content="同步和异步的对比【非阻塞I/O和阻塞I/O】 异步读取文件 异步嵌套读取文件 同步读取文件 异步和同步操作中，捕获错误的方式 Node 中的模块化 什么是程序开发中的模块及好处  什么是程序开发中的模块化：把一些功能类似的代码，封装到一个单独的文件中去，这些单独抽离出来的代码文件，就能够提供各种各样好用的功能；这种通过代码功能分割文件的方式，叫做程序中的模块化；  好处：保证了每个文件的功能（职">
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-  <title>浅析node | MrGo-Blog</title>
+  <title>浅析node(二) | MrGo-Blog</title>
   
 
 
@@ -305,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅析node</h1>
+          <h1 class="post-title" itemprop="name headline">浅析node(二)</h1>
         
 
         <div class="post-meta">
@@ -365,6 +365,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,980
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
 
           
 
@@ -388,12 +419,13 @@
 <p>同步读取文件</p>
 <p>异步和同步操作中，捕获错误的方式</p>
 <p>Node 中的模块化</p>
-<p>​</p>
-<p>​</p>
 <p>什么是程序开发中的模块及好处</p>
 <ul>
-<li>什么是程序开发中的模块化：把一些功能类似的代码，封装到一个单独的文件中去，这些单独抽离出来的代码文件，就能够提供各种各样好用的功能；这种通过代码功能分割文件的方式，叫做程序中的模块化；</li>
-<li>好处：保证了每个文件的功能（职能）单一；需要什么特定的功能，直接调用某一个特定的模块；对将来程序开发和维护都有好处！</li>
+<li><p>什么是程序开发中的模块化：把一些功能类似的代码，封装到一个单独的文件中去，这些单独抽离出来的代码文件，就能够提供各种各样好用的功能；这种通过代码功能分割文件的方式，叫做程序中的模块化；</p>
+</li>
+<li><p>好处：保证了每个文件的功能（职能）单一；需要什么特定的功能，直接调用某一个特定的模块；对将来程序开发和维护都有好处！</p>
+<a id="more"></a>
+</li>
 </ul>
 <p>Node 中如何实现模块化</p>
 <p>在Node中通过三个东西实现模块化：</p>
@@ -539,8 +571,8 @@
     
       <div>
         <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="" alt="MrGo wechat" style="width: 200px; max-width: 100%;"/>
-    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="MrGo wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
 </div>
 
       </div>
@@ -577,8 +609,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/13/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/15/canvas/" rel="prev" title="canvas">
+                canvas <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -649,7 +681,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -660,7 +692,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -671,7 +703,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -730,6 +762,9 @@
             
           
         </div>
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=92224&auto=0&height=66"></iframe>
+
 
         
         
@@ -794,7 +829,7 @@
 
   </span>
 </div>
-
+<!--
 
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
@@ -806,7 +841,7 @@
     NexT.Gemini
   </a>
 </div>
-
+-->
 &nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
 &nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
 
@@ -821,6 +856,10 @@
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共8.8k字</span>
 
 
 
@@ -1000,6 +1039,8 @@
 
   
 
+
+  
 </body>
 </html>
 <!-- 页面点击小红心 --> <script type="text/javascript" src="/js/src/love.js"></script>
