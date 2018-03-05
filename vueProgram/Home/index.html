@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1.minimum-scale=1"><title>keRee-vue</title><link href=./static/css/app.28768c136be277e377648807a46056d0.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript>try{
+        var app = document.getElementById('app'),
+            body = document.body;
+
+        var myapp = {
+            winW : window.screen.width,
+            winH :window.screen.height,
+            docW : document.documentElement.clientWidth,
+            docH : document.documentElement.clientHeight,
+            scaleNum : document.documentElement.clientWidth / 375,
+            h : document.documentElement.clientHeight * 375 / document.documentElement.clientWidth
+        }
+        function rset(){
+          return myapp = {
+            winW : window.screen.width,
+            winH :window.screen.height,
+            docW : document.documentElement.clientWidth,
+            docH : document.documentElement.clientHeight,
+            scaleNum : document.documentElement.clientWidth / 375,
+            h : document.documentElement.clientHeight * 375 / document.documentElement.clientWidth
+          }
+        }
+            // winW = document.body.clientWidth,
+            // winH = document.body.clientHeight;
+        function autoScale(myapp){
+          var head = document.body.head || document.getElementsByTagName('head')[0],
+              style = document.createElement('style'),
+              // cssText = '#app{width: 375px;height: ' + h + 'px;overflow: hidden;-webkit-transform: scale(' + num + ');transform: scale(' + num + ');-webkit-transform-origin: 0px 0px 0px;transform-origin: 0px 0px 0px;}',
+              cssText = 'body{width: 375px;height: ' + myapp.h + 'px;overflow: hidden;-webkit-transform: scale(' + myapp.scaleNum + ');transform: scale(' + myapp.scaleNum + ');-webkit-transform-origin: 0px 0px 0px;transform-origin: 0px 0px 0px;}\
+              .wrap{width: 375px;height: ' + myapp.h + 'px;overflow: auto;}'
+          style.type = 'text/css';
+
+          style.appendChild(document.createTextNode( cssText ));
+          head.appendChild(style);
+
+          console.log(myapp)
+        }
+        //autoScale(myapp);
+        window.onresize=function(){
+          console.log('resize')
+          //rset()
+          //autoScale(myapp)
+        }
+      }catch(e){
+        console.log(e)
+      }</script><script type=text/javascript src=./static/js/manifest.7982b88b56c981dc2656.js></script><script type=text/javascript src=./static/js/vendor.17dca793655aa6991814.js></script><script type=text/javascript src=./static/js/app.eb2f17849d22556d7b57.js></script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":80,"height":160},"react":{"opacityDefault":1},"mobile":{"show":false}});</script></body></html>
