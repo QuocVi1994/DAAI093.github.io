@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://mrgo.top/about/index.html</loc>
+    
+    <lastmod>2018-03-06T16:11:07.168Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mrgo.top/2018/02/13/%E6%B5%85%E6%9E%90nodejs-%E4%BA%8C/</loc>
+    
+    <lastmod>2018-03-06T15:34:41.155Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mrgo.top/2017/04/16/48%E4%B8%AAjs%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/</loc>
+    
+    <lastmod>2018-03-06T15:32:13.162Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mrgo.top/2017/06/03/console%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/</loc>
+    
+    <lastmod>2018-03-06T15:31:16.828Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mrgo.top/count/hexo%20new%20page.html</loc>
+    
+    <lastmod>2018-03-06T14:41:31.462Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mrgo.top/resume/index.html</loc>
+    
+    <lastmod>2018-03-06T10:59:34.403Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://mrgo.top/2017/04/05/hello-world/</loc>
     
     <lastmod>2018-03-05T16:56:05.386Z</lastmod>
@@ -12,13 +54,6 @@
     <loc>http://mrgo.top/2017/12/20/PHP%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</loc>
     
     <lastmod>2018-03-05T16:50:57.551Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/2018/02/13/%E6%B5%85%E6%9E%90nodejs-%E4%BA%8C/</loc>
-    
-    <lastmod>2018-03-05T16:46:17.085Z</lastmod>
     
   </url>
   
@@ -47,13 +82,6 @@
     <loc>http://mrgo.top/404.html</loc>
     
     <lastmod>2018-02-15T06:13:24.987Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mrgo.top/about/index.html</loc>
-    
-    <lastmod>2018-02-14T09:21:20.386Z</lastmod>
     
   </url>
   
