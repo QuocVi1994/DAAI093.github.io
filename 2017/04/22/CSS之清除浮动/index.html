@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="life," />
+  <meta name="keywords" content="CSS," />
 
 
 
@@ -118,18 +118,24 @@
 
 
 
-<meta name="description" content="Welcome to my blog!本博客基于Hexo博客框架搭建，并部署在GithubPages上，仍在不断完善中。 因为关于部署搭建的文章很多，所以我将不会赘述关于部署搭建相关的内容，不过在搭建的过程中的的确确遇到各种各样的小Bug，但是当网站搭建出来，老实说真的蛮开心的！">
-<meta name="keywords" content="life">
+<meta name="description" content="1.什么是浮动首先我们需要知道定位元素在页面中的位置就是定位，解决问题之前我们先来了解下几种定位方式1、普通流定位 static（默认方式）普通流定位，又称为文档流定位，是页面元素的默认定位方式页面中的块级元素：按照从上到下的方式逐个排列页面中的行内元素：按照从左到右的方式逐个排列">
+<meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="First Blog">
-<meta property="og:url" content="http://mrgo.top/2017/04/05/hello-world/index.html">
+<meta property="og:title" content="CSS之清除浮动">
+<meta property="og:url" content="http://mrgo.top/2017/04/22/CSS之清除浮动/index.html">
 <meta property="og:site_name" content="MrGo-Blog">
-<meta property="og:description" content="Welcome to my blog!本博客基于Hexo博客框架搭建，并部署在GithubPages上，仍在不断完善中。 因为关于部署搭建的文章很多，所以我将不会赘述关于部署搭建相关的内容，不过在搭建的过程中的的确确遇到各种各样的小Bug，但是当网站搭建出来，老实说真的蛮开心的！">
+<meta property="og:description" content="1.什么是浮动首先我们需要知道定位元素在页面中的位置就是定位，解决问题之前我们先来了解下几种定位方式1、普通流定位 static（默认方式）普通流定位，又称为文档流定位，是页面元素的默认定位方式页面中的块级元素：按照从上到下的方式逐个排列页面中的行内元素：按照从左到右的方式逐个排列">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-06T22:19:34.009Z">
+<meta property="og:image" content="http://img.blog.csdn.net/20170403151130868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170403152150431?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170403153221135?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170403154832675?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170403155037444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-03-07T10:10:43.158Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="First Blog">
-<meta name="twitter:description" content="Welcome to my blog!本博客基于Hexo博客框架搭建，并部署在GithubPages上，仍在不断完善中。 因为关于部署搭建的文章很多，所以我将不会赘述关于部署搭建相关的内容，不过在搭建的过程中的的确确遇到各种各样的小Bug，但是当网站搭建出来，老实说真的蛮开心的！">
+<meta name="twitter:title" content="CSS之清除浮动">
+<meta name="twitter:description" content="1.什么是浮动首先我们需要知道定位元素在页面中的位置就是定位，解决问题之前我们先来了解下几种定位方式1、普通流定位 static（默认方式）普通流定位，又称为文档流定位，是页面元素的默认定位方式页面中的块级元素：按照从上到下的方式逐个排列页面中的行内元素：按照从左到右的方式逐个排列">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170403151130868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -158,13 +164,13 @@
 
 
 
-  <link rel="canonical" href="http://mrgo.top/2017/04/05/hello-world/"/>
+  <link rel="canonical" href="http://mrgo.top/2017/04/22/CSS之清除浮动/"/>
 
 
 
 
 
-  <title>First Blog | MrGo-Blog</title>
+  <title>CSS之清除浮动 | MrGo-Blog</title>
   
 
 
@@ -356,7 +362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mrgo.top/2017/04/05/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://mrgo.top/2017/04/22/CSS之清除浮动/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MrGo">
@@ -373,7 +379,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">First Blog</h1>
+          <h1 class="post-title" itemprop="name headline">CSS之清除浮动</h1>
         
 
         <div class="post-meta">
@@ -385,8 +391,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-05T10:54:00+08:00">
-                2017-04-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-22T20:06:00+08:00">
+                2017-04-22
               </time>
             
 
@@ -412,8 +418,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/blog/" itemprop="url" rel="index">
-                    <span itemprop="name">blog</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -443,7 +449,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  205
+                  2,715
                 </span>
               
 
@@ -459,7 +465,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  10
                 </span>
               
             </div>
@@ -480,12 +486,47 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><h2 id="Welcome-to-my-blog"><a href="#Welcome-to-my-blog" class="headerlink" title="Welcome to my blog!"></a>Welcome to my blog!</h2><p>本博客基于<strong>Hexo</strong>博客框架搭建，并部署在<strong>GithubPages</strong>上，仍在不断完善中。</p>
-<p>因为关于部署搭建的文章很多，所以我将不会赘述关于部署搭建相关的内容，不过在搭建的过程中的的确确遇到各种各样的小Bug，但是当网站搭建出来，老实说真的蛮开心的！</p>
+        <script src="\assets\js\APlayer.min.js"> </script><h3 id="1-什么是浮动"><a href="#1-什么是浮动" class="headerlink" title="1.什么是浮动"></a><strong>1.什么是浮动</strong></h3><p><strong>首先我们需要知道定位</strong><br>元素在页面中的位置就是定位，解决问题之前我们先来了解下几种定位方式<br><strong>1、普通流定位 static（默认方式）</strong><br>普通流定位，又称为文档流定位，是页面元素的默认定位方式<br>页面中的块级元素：按照从上到下的方式逐个排列<br>页面中的行内元素：按照从左到右的方式逐个排列 </p>
 <a id="more"></a>
-<p>页面的右下角是网站的“守护兽”，叫hijiki，毕竟我不经常有空更新，所以总要有人看家嘛！不要调戏它哦!超凶嘚！喵~</p>
-<p>如果你有什么想法或建议想与我联系，欢迎加我QQ1107840447或者你也可以邮箱发送到:mrgowell1994@gmail.com(墙外用户)或megowell@qq.com。</p>
-<p>最后，欢迎您的访问，大爷！有空常来看看哟！</p>
+<p>但是如何让<strong>多个块级元素在一行内显示?</strong><br>这里就引出了浮动定位<br><strong>2、浮动定位 float</strong><br>float属性 取值为 left/right<br>这个属性原本不是用来布局的，而是用来做文字环绕的，但是后来人们发现做布局也不错，就一直这么用了，甚至有些时候都忘了用他做文字环绕<br><strong>3、相对定位 relative</strong><br>元素会相对于它原来的位置偏移某个距离，改变元素位置后，元素原本的空间依然会被保留<br><strong>语法</strong><br>属性：position<br>取值：relative<br>配合着 偏移属性(top/right/bottom/left)实现位置的改变</p>
+<p><strong>4、绝对定位 absolute</strong><br>如果元素被设置为绝对定位的话，将具备以下几个特征<br>1、脱离文档流-不占据页面空间<br>2、通过偏移属性固定元素位置<br>3、相对于 最近的已定位的<strong>祖先元素</strong>实现位置固定<br>4、如果没有已定位<strong>祖先元素</strong>，那么就相对于最初的包含块(body,html)去实现位置的固定<br><strong>语法</strong><br>属性：position<br>取值：absolute<br>配合着 偏移属性(top/right/bottom/left)实现位置的固定</p>
+<p><strong>5、固定定位 fixed</strong><br>将元素固定在页面的某个位置处，不会随着滚动条而发生位置移动<br><strong>语法</strong><br>属性：position<br>取值：fixed<br>配合着 偏移属性(top/right/bottom/left)实现位置的固定</p>
+<h3 id="2-浮动的效果"><a href="#2-浮动的效果" class="headerlink" title="2.浮动的效果"></a><strong>2.浮动的效果</strong></h3><ul>
+<li><strong>浮动 之后会怎么样？</strong><br>1、浮动定位元素会被排除在文档流之外-脱离文档流(不占据页面空间),其余的元素要上前补位<br>2、浮动元素会停靠在父元素的左边或右边，或停靠在其他已浮动元素的边缘上(元素只能在当前所在行浮动)<br>3、浮动元素依然位于父元素之内<br>4、浮动元素处理的问题-解决多个块级元素在一行内显示的问题<br><strong>注意</strong><br>1、一行内，显示不下所有的已浮动元素时，最后一个将换行<br>2、元素一旦浮动起来之后，那么宽度将变成自适应(宽度由内容决定)<br>3、元素一旦浮动起来之后，那么就将变成块级元素,尤其对行内元素，影响最大<br>块级元素：允许修改尺寸<br>行内元素：不允许修改尺寸<br>4、文本，行内元素，行内块元素时采用环绕的方式来排列的，是不会被浮动元素压在底下的，会巧妙的避开浮动元素</li>
+<li><strong>浮动 之后会有什么样的影响？</strong><br>由于浮动元素会脱离文档流，所以导致不占据页面空间，所以会对父元素高度带来一定影响。如果一个元素中包含的元素全部是浮动元素，那么该元素高度将变成0（高度塌陷）</li>
+</ul>
+<h3 id="3-如何清除浮动"><a href="#3-如何清除浮动" class="headerlink" title="3.如何清除浮动"></a><strong>3.如何清除浮动</strong></h3><h4 id="解决方案-及-原理分析"><a href="#解决方案-及-原理分析" class="headerlink" title="解决方案 及 原理分析"></a><strong>解决方案 及 原理分析</strong></h4><h5 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a><strong>方案1</strong></h5><p>直接设置父元素的高度<br>优势：极其简单<br>弊端：必须要知道父元素高度是多少</p>
+<h5 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a><strong>方案2</strong></h5><p>在父元素中，追加空子元素，并设置其clear属性为both<br>clear是css中专用于清除浮动的属性<br>作用：清除当前元素前面的元素浮动所带来的影响<br>取值：<br>1、none<br>默认值，不做任何清除浮动的操作<br>2、left<br>清除前面元素左浮动带来的影响<br>3、right<br>清除前面元素右浮动带来的影响<br>4、both<br>清除前面元素所有浮动带来的影响<br>优势：代码量少 容易掌握 简单易懂<br>弊端：会添加许多无意义的空标签，有违结构与表现的分离，不便于后期的维护</p>
+<h5 id="方案3"><a href="#方案3" class="headerlink" title="方案3"></a><strong>方案3</strong></h5><p>设置父元素浮动<br>优势：简单，代码量少，没有结构和语义化问题<br>弊端：对后续元素会有影响</p>
+<h5 id="方案4"><a href="#方案4" class="headerlink" title="方案4"></a><strong>方案4</strong></h5><p>为父元素设置overflow属性<br>取值：hidden 或 auto<br>优势：简单，代码量少<br>弊端：如果有内容要溢出显示(弹出菜单)，也会被一同隐藏</p>
+<h5 id="方案5"><a href="#方案5" class="headerlink" title="方案5"></a><strong>方案5</strong></h5><p>父元素设置display:table<br>优势：不影响结构与表现的分离，语义化正确，代码量少<br>弊端：盒模型属性已经改变，会造成其他问题</p>
+<h5 id="方案6"><a href="#方案6" class="headerlink" title="方案6"></a><strong>方案6</strong></h5><p>使用内容生成的方式清除浮动</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">   <span class="attribute">content</span>:<span class="string">""</span>; </span><br><span class="line">   <span class="attribute">display</span>: block; </span><br><span class="line">   <span class="attribute">clear</span>:both; </span><br><span class="line">&#125;12345</span><br></pre></td></tr></table></figure>
+<p>:after 选择器向选定的元素之后插入内容<br><code>content:&quot;&quot;;</code> 生成内容为空<br><code>display: block;</code> 生成的元素以块级元素显示,<br><code>clear:both;</code> 清除前面元素浮动带来的影响<br>相对于空标签闭合浮动的方法<br>优势：不破坏文档结构，没有副作用<br>弊端：代码量多</p>
+<h5 id="方案7"><a href="#方案7" class="headerlink" title="方案7"></a><strong>方案7</strong></h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.cf</span><span class="selector-pseudo">:before</span>,<span class="selector-class">.cf</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">   <span class="attribute">content</span>:<span class="string">""</span>;</span><br><span class="line">   <span class="attribute">display</span>:table;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.cf</span><span class="selector-pseudo">:after</span> &#123; <span class="attribute">clear</span>:both; &#125;12345</span><br></pre></td></tr></table></figure>
+<p>优势：不破坏文档结构，没有副作用<br>弊端： 代码量多<br>注意：display:table本身无法触发BFC，但是它会产生匿名框(anonymous boxes)，而匿名框中的display:table-cell可以触发BFC，简单说就是，触发块级格式化上下文的是匿名框，而不是display:table。所以通过display:table和display:table-cell创建的BFC效果是不一样的（后面会说到BFC）。</p>
+<blockquote>
+<p>CSS2.1 表格模型中的元素，可能不会全部包含在除HTML之外的文档语言中。这时，那些“丢失”的元素会被模拟出来，从而使得表格模型能够正常工作。所有的表格元素将会自动在自身周围生成所需的匿名table对象，使其符合table/inline-table、table-row、table- cell的三层嵌套关系。</p>
+</blockquote>
+<h5 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a><strong>疑问</strong></h5><p>为什么会margin边距重叠？<br>overflow:hidden, 语义应该是溢出:隐藏，按道理说，子元素浮动了，但依然是在父元素里的，而父元素高度塌陷，高度为0了，子元素应该算是溢出了，为什么没有隐藏，反而撑开了父元素的高度？<br>为什么display:table也能清除浮动，原理是什么？</p>
+<h5 id="解释"><a href="#解释" class="headerlink" title="解释"></a><strong>解释</strong></h5><p>要解释这些疑问，我们就要提到Formatting context<br>Formatting context是W3C CSS2.1规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。<br>最常见的Formatting context有Block fomatting context(简称BFC)和Inline formatting context(简称IFC)。<br>CSS2.1 中只有BFC和IFC, CSS3中还增加了GFC和FFC<br><strong>这里主要说BFC</strong><br>BFC(Block formatting context)直译为”块级格式化上下文”。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。<br>block-level box，display属性为block, list-item, table的元素，会生成block-level box。并且参与block fomatting context。<br>inline-level box， display属性为inline, inline-block, inline-table的元素，会生成inline-level box。并且参与inline formatting context。<br><strong>BFC布局规则：</strong><br>1、内部的Box会在垂直方向，按照从上到下的方式逐个排列。<br>2、Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠<br>3、每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。<br>4、BFC的区域不会与float box重叠。<br>5、BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。<br>6、计算BFC的高度时，浮动元素的高度也参与计算<br><strong>触发BFC的条件</strong><br>1、根元素<br>2、float （left，right）<br>3、overflow 除了visible 以外的值（hidden，auto，scroll ）<br>4、display (table-cell，table-caption，inline-block)<br>5、position（absolute，fixed）<br><strong>举例详解BFC</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">   <span class="selector-class">.top</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>:red;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">50px</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="selector-class">.bottom</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>:blue;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">20px</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;div class="top"&gt;上&lt;/div&gt;</span><br><span class="line">    &lt;div class="bottom"&gt;下&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>​                            <img src="http://img.blog.csdn.net/20170403151130868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>依据BFC布局规则第二条：</p>
+<p>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠<br>注意：发生重叠后，外边距的高度等于两个发生重叠的外边距的高度中的较大者</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">   <span class="selector-class">.top</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">width</span><span class="selector-pseudo">:100px</span>;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">height</span><span class="selector-pseudo">:100px</span>;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background</span><span class="selector-pseudo">:red</span>;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">float</span><span class="selector-pseudo">:left</span>;</span></span><br><span class="line"><span class="undefined">   &#125;</span></span><br><span class="line"><span class="css">   <span class="selector-class">.bottom</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">width</span><span class="selector-pseudo">:200px</span>;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">height</span><span class="selector-pseudo">:200px</span>;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background</span><span class="selector-pseudo">:blue</span>;</span></span><br><span class="line"><span class="undefined">   &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"top"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bottom"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​                                                           <img src="http://img.blog.csdn.net/20170403152150431?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>依据BFC布局规则第三条：</p>
+<p>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。<br>我们可以看到，虽然有浮动的元素top，但是bottom的左边依然与包含块的左边相接触。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:100px</span>;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:100px</span>;</span><br><span class="line"><span class="selector-tag">background</span><span class="selector-pseudo">:red</span>;</span><br><span class="line"><span class="selector-tag">float</span><span class="selector-pseudo">:left</span>;&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">   <span class="selector-class">.top</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>:red;</span><br><span class="line">    <span class="attribute">float</span>:left;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="selector-class">.bottom</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>:blue;</span><br><span class="line">    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">   &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;div class="top"&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class="bottom"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>​                                <img src="http://img.blog.csdn.net/20170403153221135?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>依据BFC布局规则第四条：</p>
+<p>BFC的区域不会与float box重叠。<br>看代码和效果图，可以看出，这次的代码比上面的代码多了一行overflow:hidden;用这行代码触发新的BFC后，由于这个新的BFC不会与浮动的top重叠，所以bottom的位置改变了</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">   <span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>:red;</span><br><span class="line">    <span class="attribute">float</span>:left;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid blue;</span><br><span class="line">   &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">div</span>&gt;</span><br><span class="line">       &lt;p&gt;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;width:100px;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:100px</span>;</span><br><span class="line"><span class="selector-tag">background</span><span class="selector-pseudo">:red</span>;</span><br><span class="line"><span class="selector-tag">float</span><span class="selector-pseudo">:left</span>;</span><br></pre></td></tr></table></figure>
+<p>​                                        <img src="http://img.blog.csdn.net/20170403154832675?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>当div增加 overflow:hidden; 时 效果如下 </p>
+<p>​                                        <img src="http://img.blog.csdn.net/20170403155037444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvRkVfZGV2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>依据BFC布局规则第六条：</p>
+<p>计算BFC的高度时，浮动元素的高度也参与计算。<br>到此我们应该是解决了上面的所有疑问了。</p>
+<p>总结<br>清除浮动的方式有很多种，但是实现的原理主要是靠clear属性，和触发新的BFC，通过详细的解释与比较，最后两种内容生成的方式是比较推荐使用的，如果需要考虑margin重叠的问题，就用方案7，不考虑就用方案6。</p>
+<p>文章转载自<a href="http://blog.csdn.net/FE_dev/article/details/68954481" target="_blank" rel="noopener">CSDN</a></p>
 
       
     </div>
@@ -528,7 +569,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/life/" rel="tag"> <i class="fa fa-tag"></i> life</a>
+            <a href="/tags/CSS/" rel="tag"> <i class="fa fa-tag"></i> CSS</a>
           
         </div>
       
@@ -541,14 +582,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/04/16/Linux常用命令/" rel="next" title="Linux">
+                <i class="fa fa-chevron-left"></i> Linux
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/16/48个js代码片段/" rel="prev" title="48 个 JavaScript 代码片段">
-                48 个 JavaScript 代码片段 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/11/javascript高级/" rel="prev" title="JavaScript高级">
+                JavaScript高级 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -785,7 +830,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Welcome-to-my-blog"><span class="nav-number">1.</span> <span class="nav-text">Welcome to my blog!</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是浮动"><span class="nav-number">1.</span> <span class="nav-text">1.什么是浮动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-浮动的效果"><span class="nav-number">2.</span> <span class="nav-text">2.浮动的效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-如何清除浮动"><span class="nav-number">3.</span> <span class="nav-text">3.如何清除浮动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案-及-原理分析"><span class="nav-number">3.1.</span> <span class="nav-text">解决方案 及 原理分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方案1"><span class="nav-number">3.1.1.</span> <span class="nav-text">方案1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方案2"><span class="nav-number">3.1.2.</span> <span class="nav-text">方案2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方案3"><span class="nav-number">3.1.3.</span> <span class="nav-text">方案3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方案4"><span class="nav-number">3.1.4.</span> <span class="nav-text">方案4</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方案5"><span class="nav-number">3.1.5.</span> <span class="nav-text">方案5</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方案6"><span class="nav-number">3.1.6.</span> <span class="nav-text">方案6</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方案7"><span class="nav-number">3.1.7.</span> <span class="nav-text">方案7</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#疑问"><span class="nav-number">3.1.8.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解释"><span class="nav-number">3.1.9.</span> <span class="nav-text">解释</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
