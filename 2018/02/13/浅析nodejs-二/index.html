@@ -126,7 +126,7 @@
 <meta property="og:site_name" content="MrGo-Blog">
 <meta property="og:description" content="关于node的常见知识点札记  同步和异步的对比【非阻塞I/O和阻塞I/O】 异步读取文件 异步嵌套读取文件 同步读取文件 异步和同步操作中，捕获错误的方式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-06T15:34:41.155Z">
+<meta property="og:updated_time" content="2018-03-06T22:22:01.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析node(二)">
 <meta name="twitter:description" content="关于node的常见知识点札记  同步和异步的对比【非阻塞I/O和阻塞I/O】 异步读取文件 异步嵌套读取文件 同步读取文件 异步和同步操作中，捕获错误的方式">
@@ -501,21 +501,22 @@
 <p>  Node 中如何实现模块化</p>
 <p>  在Node中通过三个东西实现模块化：</p>
 <ul>
-<li>module：表示一个模块，在Node中，最常见的模块，就是一个个的JS文件！</li>
+<li><p>module：表示一个模块，在Node中，最常见的模块，就是一个个的JS文件！</p>
+<ul>
 <li>require：作用是加载其他模块用的；在一个JS文件中，如何引用其他JS文件中的成员呢？就是用require</li>
-<li><p>exports：在Node的模块中，如果这个模块需要向外暴露一些成员，供其他JS模块使用，那么，需要使用exports向外暴露这些成员！</p>
+<li>exports：在Node的模块中，如果这个模块需要向外暴露一些成员，供其他JS模块使用，那么，需要使用exports向外暴露这些成员！</li>
+</ul>
 <p>Node 中的模块化，主要解决的JS文件之间的相互依赖关系！</p>
 <p>Node 中的模块的分类</p>
 <p>node由三部分组成：ECMAScript + 核心API + 第三方等API</p>
 <p>核心模块</p>
-</li>
-<li><p>什么是核心模块：官方，发现一些功能模块使用非常频繁，然后，官方把这些模块，编译成了二进制可执行文件，然后打包到了Node的安装包中；所以，这些核心模块就已经随着安装Node时候，被安装到了本地；</p>
-</li>
-<li><p>如何使用核心模块<br>使用require（‘核心模块的名称’）；</p>
+<ul>
+<li>什么是核心模块：官方，发现一些功能模块使用非常频繁，然后，官方把这些模块，编译成了二进制可执行文件，然后打包到了Node的安装包中；所以，这些核心模块就已经随着安装Node时候，被安装到了本地；</li>
+<li>如何使用核心模块<br>使用require（‘核心模块的名称’）；</li>
+</ul>
 <p>第三方模块</p>
-</li>
-<li><p>什么是第三方模块：出了官方提供的好用的核心模块之外，我们程序员发现，还有一些使用也很频繁的代码和方法，一些牛逼的团体、个人、公司，开发出了好用的模块，通过NPM官网，托管出去，供其他人下载使用的这些模块；统称为第三方模块；</p>
-</li>
+<ul>
+<li>什么是第三方模块：出了官方提供的好用的核心模块之外，我们程序员发现，还有一些使用也很频繁的代码和方法，一些牛逼的团体、个人、公司，开发出了好用的模块，通过NPM官网，托管出去，供其他人下载使用的这些模块；统称为第三方模块；</li>
 <li>如何使用第三方模块<br>－　通过moment这个第三方模块，来介绍如何使用一个第三方模块；</li>
 <li>第三方模块的使用方式：</li>
 </ul>
@@ -523,16 +524,15 @@
 <li>先使用npm下载这个模块！【注意：在安装第三方模块的时候，安装的名字，就是你在require时候导入的名字】</li>
 <li>使用require导入这个第三方模块！</li>
 <li>通过官方文档，试着去使用这个第三方模块！</li>
-<li><p>注意：无论是核心模块、还是第三方模块，都是通过 标识符名称来引用这个模块的！</p>
-<p>用户模块</p>
-</li>
+<li>注意：无论是核心模块、还是第三方模块，都是通过 标识符名称来引用这个模块的！</li>
 </ol>
+<p>用户模块</p>
 <ul>
 <li>什么是用户模块：程序员自己定义的JS文件，统统数据用户模块！</li>
 <li><p>用户模块向外导出成员的两种方式：</p>
 </li>
 <li><p>第一种方式：使用global对象，相当于浏览器中的window对象</p>
-<ul>
+</li>
 <li><ol>
 <li>全局变量污染，</li>
 </ol>
@@ -541,32 +541,28 @@
 <li>不知道成员是从哪个模块中暴露 出去的</li>
 </ol>
 </li>
+<li>推荐Node提供的exports</li>
 </ul>
-</li>
-<li><p>推荐Node提供的exports</p>
 <p>exports 和 module.exports 的区别</p>
-</li>
-</ul>
 <ol>
 <li>通过 module.exports 可以使用 . 的形式追加属性，也可以使用 等号 直接赋值的形式导出成员；</li>
 <li>exports 只能通过 . 的形式追加属性；不能使用 等号 直接赋值的形式！</li>
 <li>注意： 在一个 module 中，最终向外暴露的成员，以 module.exports 指向的对象为准！</li>
-<li><p>在一个模块中，不要混合使用 module.exports 和 exports</p>
+<li>在一个模块中，不要混合使用 module.exports 和 exports</li>
+</ol>
 <p>模块加载规则</p>
-</li>
-<li><p>优先从缓存中加载</p>
-</li>
+<ol>
+<li>优先从缓存中加载</li>
 <li>加载核心模块:优先从缓存中加载；如果缓存中没有的话，再去执行加载核心模块！</li>
 <li>自己的模块:优先从缓存中加载；如果缓存中没有的话，再去执行加载用户模块！</li>
 </ol>
 <ul>
 <li><p>用户模块的查找规则：</p>
-<p>  用户模块的查找规则：<br>  如果不写后缀名，则先严格按照给定的文件名去查找模块并加载执行；<br>  index   -&gt;  index.js  -&gt;   index.json    -&gt;  index.node</p>
+<p>用户模块的查找规则：<br>如果不写后缀名，则先严格按照给定的文件名去查找模块并加载执行；<br>index   -&gt;  index.js  -&gt;   index.json    -&gt;  index.node</p>
 </li>
 </ul>
 <ol>
-<li><p>第三方模块查找规则：</p>
-<ol>
+<li>第三方模块查找规则：<ol>
 <li>node首先，查看项目根目录中有没有 node_modules 文件夹</li>
 <li>查找 node_modules 文件夹中，有没有和第三方模块名称一致的文件夹</li>
 <li>在模块对应的文件夹中，查找有没有 package.json 这个文件</li>
@@ -577,21 +573,22 @@
 <li>如果上一层目录中也没有查找到，则再向上翻一层去查找，直到找到当前项目所在的盘符根目录为止！</li>
 <li>如果找到了盘符根目录还找不到，则报错：cannot find module <em>*</em></li>
 </ol>
+</li>
+</ol>
 <p>只安装部署依赖项不安装开发工具</p>
-<p> npm i –production</p>
+<p>  npm i –production</p>
 <p>模块化</p>
-</li>
-<li><p>node中的模块化基于commonJS:最显著的特点所有依赖项都是同步加载的！！！</p>
-</li>
+<ol>
+<li>node中的模块化基于commonJS:最显著的特点所有依赖项都是同步加载的！！！</li>
 <li>commonJS由于是一个同步加载规范，所以不适合浏览器端使用；于是，浏览器端需要使用异步的模块加载机制</li>
-<li><p>AMD、CMD</p>
+<li>AMD、CMD</li>
+</ol>
 <p>结合art-template模板引擎在服务器端渲染页面</p>
 <p>art-template官方文档</p>
 <p>服务端渲染和客户端渲染的对比</p>
 <p>博客园官网</p>
-</li>
-<li><p>服务器端渲染</p>
-</li>
+<ol>
+<li>服务器端渲染</li>
 </ol>
 <ul>
 <li>特点：Node服务器先读取模板页面，再获取要渲染的数据，然后直接在服务器端把完整的页面渲染拼接好，然后通过网络一次性的把结果发送给浏览器去显示！【注意：通过服务器端渲染，在网络中传输的是一个真正页面】</li>
@@ -604,30 +601,30 @@
 <ul>
 <li>特点：先访问服务器获取到模板页面，然后再通过Ajax获取要渲染的数据，拿到这两者之后，再客户端调用模板引擎，渲染得到模板字符串，然后通过JS的方式，把结果展示到页面上！【真正的页面是在客户端浏览器中怼出来的，在进行网络传输的时候，第一次传输的是模板页面，第二次传输的是数据】</li>
 <li>优点：减轻了服务器端的渲染压力</li>
-<li><p>缺点：请求次数多，用户体验可能没有服务器端渲染好（白屏效果）；对SEO不友好</p>
-<p>使用nodemon来自动重启Node服务</p>
-</li>
+<li>缺点：请求次数多，用户体验可能没有服务器端渲染好（白屏效果）；对SEO不友好</li>
 </ul>
+<p>使用nodemon来自动重启Node服务</p>
 <ol>
 <li>运行npm i nodemon -g全局安装模块</li>
 <li>使用方式 和 node 完全一样：</li>
 </ol>
 <ul>
 <li>node 要执行文件的路径</li>
-<li><p>nodemon 要执行文件的路径</p>
+<li>nodemon 要执行文件的路径</li>
+</ul>
 <p>文件列表小案例</p>
 <p>获取文件的属性</p>
 <p>在优化前, 先封装一个根据指定路径读取文件内容的方法【重点】</p>
 <p>将读取文件夹的方法抽离出来，同时对error进行处理【重点】</p>
 <p>相关文章</p>
-</li>
-</ul>
 <ol>
 <li>art-template 官方文档</li>
 <li>ES6 - 模板字符串</li>
 <li>js中的数组对象排序</li>
 <li>i5ting/tocmd.npm 将MD转换为HTML</li>
 </ol>
+</li>
+</ul>
 
       
     </div>
@@ -683,8 +680,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/13/浅析nodejs/" rel="next" title="浅析node">
-                <i class="fa fa-chevron-left"></i> 浅析node
+              <a href="/2018/01/01/2018年年度小目标/" rel="next" title="2018年度小目标">
+                <i class="fa fa-chevron-left"></i> 2018年度小目标
               </a>
             
           </div>
@@ -693,8 +690,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/15/canvas/" rel="prev" title="canvas">
-                canvas <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/13/浅析nodejs/" rel="prev" title="浅析node">
+                浅析node <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -790,7 +787,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -801,7 +798,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -812,7 +809,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -972,7 +969,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共19.1k字</span>
+  <span class="post-count">博客全站共38.0k字</span>
 
 
 
